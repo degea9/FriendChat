@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SignUpActivity extends BaseActivity implements SingUpContract {
     private static final String TAG = SignUpActivity.class.getSimpleName();
@@ -19,9 +20,6 @@ public class SignUpActivity extends BaseActivity implements SingUpContract {
     EditText txtEmail;
     @Bind(R.id.password)
     EditText txtPassword;
-    @Bind(R.id.sign_up_button)
-    Button btnSignUp;
-
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
     private SingUpPresenter mSingUpPresenter;
@@ -33,17 +31,15 @@ public class SignUpActivity extends BaseActivity implements SingUpContract {
         ButterKnife.bind(this);
         mSingUpPresenter = new SingUpPresenter(this);
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                String email = txtEmail.getText().toString().trim();
-                String password = txtPassword.getText().toString().trim();
-                mSingUpPresenter.signUp(email,password);
-            }
-        });
     }
 
+    @OnClick(R.id.sign_up_button)
+    public void signUp(){
+        progressBar.setVisibility(View.VISIBLE);
+        String email = txtEmail.getText().toString().trim();
+        String password = txtPassword.getText().toString().trim();
+        mSingUpPresenter.signUp(email,password);
+    }
 
     @Override
     public void navigateToLogin() {
