@@ -13,31 +13,32 @@ import android.support.annotation.NonNull;
 /**
  * Created by hp 400 on 10/4/2016.
  */
-public class SingUpPresenter extends BasePresenter{
+public class SingUpPresenter extends BasePresenter {
     private SingUpContract mSingUpContract;
     private FirebaseAuth mAuth;
 
-    public SingUpPresenter(SingUpContract singUpContract){
+    public SingUpPresenter(SingUpContract singUpContract) {
         mAuth = FirebaseAuth.getInstance();
         mSingUpContract = singUpContract;
     }
 
     /**
      * create user with email and password
-     * @param email
-     * @param password
      */
-    public void signUp(String email,String password){
-        if(Validator.validate(email,password)){
+    public void signUp(String email, String password) {
+        if (Validator.validate(email, password)) {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            mSingUpContract.navigateToLogin();
+                            if (task.isSuccessful())
+                                mSingUpContract.singUpSuccess();
+                            else{
+
+                            }
                         }
                     });
-        }
-        else{
+        } else {
             mSingUpContract.showError("");
         }
     }
