@@ -39,6 +39,7 @@ public class LoginActivity extends BaseActivity implements LoginContract {
         mPresenter.login(email,password);
     }
 
+
     @Override
     public void loginSuccess() {
         progressBar.setVisibility(View.GONE);
