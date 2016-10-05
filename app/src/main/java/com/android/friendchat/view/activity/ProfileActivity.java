@@ -1,6 +1,7 @@
 package com.android.friendchat.view.activity;
 
 import com.android.friendchat.R;
+import com.android.friendchat.presenter.ProfilePresenter;
 import com.android.friendchat.utils.FireBaseUtils;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.custom.MLRoundedImageView;
@@ -23,6 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends BaseActivity {
     private static final String TAG = ProfileActivity.class.getSimpleName();
+    ProfilePresenter mPresenter;
     private static final int REQUEST_GALLERY_CODE = 1000;
     @Bind(R.id.profile_avatar)
     CircleImageView mAvatar;
