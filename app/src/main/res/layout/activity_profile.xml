@@ -28,11 +28,22 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <com.android.friendchat.view.custom.MLRoundedImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/andrew"/>
+    <!--<com.android.friendchat.view.custom.MLRoundedImageView-->
+        <!--android:id="@+id/profile_avatar"-->
+        <!--android:layout_width="120dp"-->
+        <!--android:layout_height="120dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:src="@drawable/a10101jpg"-->
+
+        <!--/>-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_avatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/a10101jpg"
+        app:civ_border_width="0dp"
+        app:civ_border_color="#FF000000"/>
 
 </LinearLayout>
