@@ -4,6 +4,7 @@ import com.android.friendchat.R;
 import com.android.friendchat.presenter.SingUpPresenter;
 import com.android.friendchat.view.contract.SingUpContract;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,13 +42,19 @@ public class SignUpActivity extends BaseActivity implements SingUpContract {
         mSingUpPresenter.signUp(email,password);
     }
 
+    @OnClick(R.id.sign_in_button)
+    public void signIn(){
+       navigateTo(LoginActivity.class);
+    }
+
     @Override
-    public void navigateToLogin() {
+    public void singUpSuccess() {
         progressBar.setVisibility(View.GONE);
+        navigateTo(RoomActivity.class);
     }
 
     @Override
     public void showError(String message) {
-
+        progressBar.setVisibility(View.GONE);
     }
 }
