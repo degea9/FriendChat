@@ -64,33 +64,40 @@
                 android:background="@color/colorAccent"
                 android:text="@string/btn_login"
                 android:textColor="@android:color/black"/>
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:layout_marginTop="10dp">
-            <ImageView
-                    android:id="@+id/google_login"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_googleplus"
-                    />
+        <com.facebook.login.widget.LoginButton
+                android:id="@+id/fb_login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp" />
+        <!--<LinearLayout android:layout_width="match_parent"-->
+                      <!--android:layout_height="wrap_content"-->
+                      <!--android:orientation="horizontal"-->
+                      <!--android:layout_marginTop="10dp">-->
+            <!--<ImageView-->
+                    <!--android:id="@+id/google_login"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/ic_googleplus"-->
+                    <!--/>-->
 
-            <ImageView
-                    android:id="@+id/fb_login"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_facebook"
-                    />
-            <ImageView
-                    android:id="@+id/twitter_login"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_twitter"
-                    />
-        </LinearLayout>
+            <!--<ImageView-->
+                    <!--android:id="@+id/fb_login"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/ic_facebook"-->
+                    <!--/>-->
+            <!--<ImageView-->
+                    <!--android:id="@+id/twitter_login"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/ic_twitter"-->
+                    <!--/>-->
+        <!--</LinearLayout>-->
 
         <Button
                 android:id="@+id/btn_reset_password"

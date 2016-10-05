@@ -31,4 +31,12 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password
         reset instructions.
     </string>
+    <string name="facebook_app_id">1752293511679673</string>
+    <string name="OAuth_client_ID">
+        287536826412-5ggf0esj8avrqt1t66p7i04gb8k82hhb.apps.googleusercontent.com
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popular">Most popular</string>
 </resources>
