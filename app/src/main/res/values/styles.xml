@@ -10,4 +10,10 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="ProfileText" >
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#000</item>
+    </style>
+
 </resources>

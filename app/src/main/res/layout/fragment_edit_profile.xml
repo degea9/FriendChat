@@ -17,6 +17,7 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </android.support.design.widget.AppBarLayout>
 
+
     <ImageView
             android:id="@+id/profile_avatar"
             android:layout_width="match_parent"
@@ -31,6 +32,16 @@
 
     </TextView>
 
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ProfileText"
+            android:text="@string/gender"/>
+
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_gender"/>
     <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
