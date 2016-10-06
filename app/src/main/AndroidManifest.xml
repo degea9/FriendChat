@@ -4,8 +4,7 @@
           package="com.android.friendchat">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
             android:name=".FriendChatApplication"
@@ -18,7 +17,7 @@
                 android:name="com.facebook.sdk.ApplicationId"
                 android:value="@string/facebook_app_id"/>
 
-        <activity android:name=".view.activity.ProfileActivity">
+        <activity android:name=".view.activity.EditProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -38,6 +37,8 @@
         <activity android:name=".view.activity.RoomActivity">
         </activity>
         <activity android:name=".view.activity.SignUpActivity">
+        </activity>
+        <activity android:name=".view.activity.ProfileActivity">
         </activity>
     </application>
 

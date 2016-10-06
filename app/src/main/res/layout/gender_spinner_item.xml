@@ -6,9 +6,9 @@
 
     <ImageView
             android:id="@+id/icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/ic_male" /><!--Make sure image is present in Drawable folder-->
 
     <TextView
@@ -16,7 +16,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="@dimen/activity_horizontal_margin"
             android:text="Male"
             style="@style/ProfileText" />
 </LinearLayout>

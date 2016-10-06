@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -20,7 +21,9 @@ public class GenderAdapter extends BaseAdapter {
     int icons[];
     String[] genders;
     LayoutInflater inflter;
+    @Bind(R.id.icon)
     ImageView icon;
+    @Bind(R.id.gender)
     TextView gender;
 
     public GenderAdapter(Context applicationContext, int[] flags, String[] genders) {
@@ -48,7 +51,7 @@ public class GenderAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.gender_spinner_item, null);
-        ButterKnife.bind(view);
+        ButterKnife.bind(this,view);
         icon.setImageResource(icons[i]);
         gender.setText(genders[i]);
         return view;
