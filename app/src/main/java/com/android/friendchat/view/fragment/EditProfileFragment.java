@@ -12,10 +12,10 @@ import com.android.friendchat.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularFragment extends BaseFragment {
+public class EditProfileFragment extends BaseFragment {
 
 
-    public PopularFragment() {
+    public EditProfileFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class PopularFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_popular, container, false);
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
     }
 
 }

@@ -48,8 +48,9 @@ public class MLRoundedImageView extends ImageView {
         int w = getWidth(), h = getHeight();
 
         Bitmap roundBitmap = getCroppedBitmap(bitmap, w);
-        canvas.drawBitmap(roundBitmap, 0, 0, null);
+        Paint paint = new Paint();
 
+        canvas.drawBitmap(roundBitmap, 0, 0, null);
     }
 
     public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
@@ -80,7 +81,10 @@ public class MLRoundedImageView extends ImageView {
                 radius / 2 + 0.7f, radius / 2 + 0.1f, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(sbmp, rect, rect, paint);
-
+        Paint paint1 = new Paint();
+        paint1.setColor(Color.GREEN);
+        paint1.setFlags(Paint.ANTI_ALIAS_FLAG);
+        canvas.drawCircle(radius*0.85f, radius*0.85f, 31, paint1);
         return output;
     }
 

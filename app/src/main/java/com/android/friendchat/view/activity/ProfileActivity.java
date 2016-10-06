@@ -1,19 +1,19 @@
 package com.android.friendchat.view.activity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import com.android.friendchat.R;
 import com.android.friendchat.presenter.ProfilePresenter;
 import com.android.friendchat.utils.FireBaseUtils;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.custom.MLRoundedImageView;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -27,7 +27,7 @@ public class ProfileActivity extends BaseActivity {
     ProfilePresenter mPresenter;
     private static final int REQUEST_GALLERY_CODE = 1000;
     @Bind(R.id.profile_avatar)
-    CircleImageView mAvatar;
+    MLRoundedImageView mAvatar;
     StorageReference mStorageRef;
 
     @Override
@@ -61,7 +61,7 @@ public class ProfileActivity extends BaseActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     dissmissProgressDialog();
-                    LogUtil.d(TAG,"upload success "+taskSnapshot.getDownloadUrl());
+                    LogUtil.d(TAG, "upload success " + taskSnapshot.getDownloadUrl());
                     Picasso.with(ProfileActivity.this).load(taskSnapshot.getDownloadUrl()).into(mAvatar);
                     Toast.makeText(ProfileActivity.this,"upload success",Toast.LENGTH_SHORT).show();
                 }

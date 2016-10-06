@@ -18,7 +18,7 @@
                 android:name="com.facebook.sdk.ApplicationId"
                 android:value="@string/facebook_app_id"/>
 
-        <activity android:name=".view.activity.SignUpActivity">
+        <activity android:name=".view.activity.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -37,7 +37,7 @@
                 tools:replace="android:theme"/>
         <activity android:name=".view.activity.RoomActivity">
         </activity>
-        <activity android:name=".view.activity.ProfileActivity">
+        <activity android:name=".view.activity.SignUpActivity">
         </activity>
     </application>
 
