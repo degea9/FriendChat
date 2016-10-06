@@ -3,6 +3,7 @@
  */
 package com.android.friendchat.interactor;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -15,6 +16,12 @@ public class ProfileInteractor {
         mUserRef = FirebaseDatabase.getInstance().getReference().child("user");
     }
     public void saveProfile(User user){
-        mUserRef.child("13").setValue(user);
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mUserRef.child(uid).setValue(user);
+    }
+
+    public void getProfile(){
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mUserRef.child(uid).or;
     }
 }

@@ -93,6 +93,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
 
     @Override
     public void returnDate(String date) {
+        mBirthDay.setText(date);
         mUser.setBirthDay(date);
     }
 

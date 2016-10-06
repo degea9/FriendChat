@@ -133,7 +133,7 @@ public class LoginActivity extends BaseActivity implements LoginContract {
     @Override
     public void loginSuccess() {
         progressBar.setVisibility(View.GONE);
-        navigateTo(ProfileActivity.class);
+        navigateTo(EditProfileActivity.class);
         Toast.makeText(this,"login success",Toast.LENGTH_LONG).show();
     }
 
