@@ -22,6 +22,6 @@ public class ProfileInteractor {
 
     public void getProfile(){
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mUserRef.child(uid).or;
+        //mUserRef.child(uid).or;
     }
 }
