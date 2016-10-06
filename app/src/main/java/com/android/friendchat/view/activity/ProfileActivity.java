@@ -1,5 +1,8 @@
 package com.android.friendchat.view.activity;
 
+import com.android.friendchat.data.model.User;
+import com.android.friendchat.utils.DatabaseUtils;
+import com.android.friendchat.view.contract.ProfileContract;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -15,6 +18,7 @@ import com.squareup.picasso.Picasso;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.Bind;
@@ -22,12 +26,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity implements ProfileContract {
     private static final String TAG = ProfileActivity.class.getSimpleName();
     ProfilePresenter mPresenter;
     private static final int REQUEST_GALLERY_CODE = 1000;
     @Bind(R.id.profile_avatar)
     MLRoundedImageView mAvatar;
+    @Bind(R.id.profile_info)
+    TextView mProfileInfo;
     StorageReference mStorageRef;
 
     @Override
@@ -35,6 +41,9 @@ public class ProfileActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
+        mPresenter = new ProfilePresenter();
+        mPresenter.setViewContract(this);
+        mPresenter.getProfile();
     }
 
     @OnClick(R.id.profile_avatar)
@@ -66,6 +75,13 @@ public class ProfileActivity extends BaseActivity {
                     Toast.makeText(ProfileActivity.this,"upload success",Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+    }
+
+    @Override
+    public void displayProfile(User user) {
+        if(user!=null){
+            mProfileInfo.setText(DatabaseUtils.getUserInfo(user));
         }
     }
 }
