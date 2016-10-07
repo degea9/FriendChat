@@ -4,6 +4,9 @@ import com.android.friendchat.data.model.User;
 import com.android.friendchat.utils.DatabaseUtils;
 import com.android.friendchat.view.contract.ProfileContract;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -40,6 +43,7 @@ public class ProfileActivity extends BaseActivity implements ProfileContract {
     @Bind(R.id.profile_info)
     TextView mProfileInfo;
     StorageReference mStorageRef;
+    private DatabaseReference mUserRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +103,11 @@ public class ProfileActivity extends BaseActivity implements ProfileContract {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     dissmissProgressDialog();
-                    LogUtil.d(TAG, "upload success " + taskSnapshot.getDownloadUrl());
+                    mUserRef = FirebaseDatabase.getInstance().getReference().child("user");
+                    User user = new User();
+                    user.setAvatar(taskSnapshot.getDownloadUrl().toString());
+                    mUserRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                    LogUtil.d(TAG, "upload success " + taskSnapshot.getDownloadUrl().toString());
                     Picasso.with(ProfileActivity.this).load(taskSnapshot.getDownloadUrl()).into(mAvatar);
                     Toast.makeText(ProfileActivity.this,"upload success",Toast.LENGTH_SHORT).show();
                 }

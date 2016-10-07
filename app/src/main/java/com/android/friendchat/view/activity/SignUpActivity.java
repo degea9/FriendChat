@@ -50,7 +50,7 @@ public class SignUpActivity extends BaseActivity implements SingUpContract {
     @Override
     public void singUpSuccess() {
         progressBar.setVisibility(View.GONE);
-        navigateTo(RoomActivity.class);
+        navigateTo(LoginActivity.class);
     }
 
     @Override

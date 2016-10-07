@@ -1,5 +1,6 @@
 package com.android.friendchat.presenter;
 
+import com.android.friendchat.data.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -7,6 +8,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import com.android.friendchat.data.validator.Validator;
 import com.android.friendchat.view.contract.SingUpContract;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import android.support.annotation.NonNull;
 
@@ -16,10 +19,11 @@ import android.support.annotation.NonNull;
 public class SingUpPresenter extends BasePresenter {
     private SingUpContract mSingUpContract;
     private FirebaseAuth mAuth;
-
+    private DatabaseReference mUserRef;
     public SingUpPresenter(SingUpContract singUpContract) {
         mAuth = FirebaseAuth.getInstance();
         mSingUpContract = singUpContract;
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("user");
     }
 
     /**
@@ -31,8 +35,10 @@ public class SingUpPresenter extends BasePresenter {
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful())
+                            if (task.isSuccessful()) {
+                                mUserRef.child(mAuth.getCurrentUser().getUid()).setValue(new User());
                                 mSingUpContract.singUpSuccess();
+                            }
                             else{
 
                             }
