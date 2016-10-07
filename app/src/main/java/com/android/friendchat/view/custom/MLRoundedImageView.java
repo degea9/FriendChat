@@ -13,6 +13,8 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.android.friendchat.R;
+
 /**
  * Created by hp 400 on 10/5/2016.
  */
@@ -53,7 +55,7 @@ public class MLRoundedImageView extends ImageView {
         canvas.drawBitmap(roundBitmap, 0, 0, null);
     }
 
-    public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
+    public  Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
         Bitmap sbmp;
 
         if (bmp.getWidth() != radius || bmp.getHeight() != radius) {
@@ -80,11 +82,19 @@ public class MLRoundedImageView extends ImageView {
         canvas.drawCircle(radius / 2 + 0.7f,
                 radius / 2 + 0.7f, radius / 2 + 0.1f, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
         canvas.drawBitmap(sbmp, rect, rect, paint);
-        Paint paint1 = new Paint();
-        paint1.setColor(Color.GREEN);
-        paint1.setFlags(Paint.ANTI_ALIAS_FLAG);
-        canvas.drawCircle(radius*0.85f, radius*0.85f, 31, paint1);
+        //Paint paint1 = new Paint();
+        //paint1.setColor(Color.GREEN);
+        //paint1.setFlags(Paint.ANTI_ALIAS_FLAG);
+        //canvas.drawCircle(radius*0.85f, radius*0.85f, 31, paint1);
+        Drawable d = getResources().getDrawable(R.drawable.ic_tick);
+        int left = (int)(radius*0.75f);
+        int top = (int)(radius*0.75f);
+        int right = (int)(radius*0.95f);
+        int bottom = (int)(radius*0.95f);
+        d.setBounds(left,top,right,bottom);
+        d.draw(canvas);
         return output;
     }
 
