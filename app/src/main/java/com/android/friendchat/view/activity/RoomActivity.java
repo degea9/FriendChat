@@ -2,6 +2,7 @@ package com.android.friendchat.view.activity;
 
 import com.android.friendchat.R;
 import com.android.friendchat.view.adapter.RoomPagerAdapter;
+import com.android.friendchat.view.fragment.FriendFragment;
 import com.android.friendchat.view.fragment.PopularFragment;
 
 import android.support.design.widget.TabLayout;
@@ -37,9 +38,9 @@ public class RoomActivity extends BaseActivity {
 
     private void setupViewPager() {
         RoomPagerAdapter adapter = new RoomPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PopularFragment(), getString(R.string.popular));
-        adapter.addFragment(new PopularFragment(), "TWO");
-        adapter.addFragment(new PopularFragment(), "THREE");
+        adapter.addFragment(new FriendFragment(), getString(R.string.popular));
+        //adapter.addFragment(new PopularFragment(), "TWO");
+        //adapter.addFragment(new PopularFragment(), "THREE");
         mPager.setAdapter(adapter);
     }
 }

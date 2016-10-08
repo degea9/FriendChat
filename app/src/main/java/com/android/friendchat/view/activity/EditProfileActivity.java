@@ -26,7 +26,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EditProfileActivity extends AppCompatActivity implements DatePickerListener {
+public class EditProfileActivity extends BaseActivity implements DatePickerListener {
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @Bind(R.id.profile_gender)
@@ -79,6 +79,7 @@ public class EditProfileActivity extends AppCompatActivity implements DatePicker
             mUser.setFirstName(firstName);
             mUser.setLastName(lastName);
             mPresenter.saveProfile(mUser);
+            navigateTo(RoomActivity.class);
             return true;
         }
 
