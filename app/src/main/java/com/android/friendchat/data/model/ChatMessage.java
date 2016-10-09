@@ -3,44 +3,14 @@
  */
 package com.android.friendchat.data.model;
 
-public class ChatMessage {
-    private long timestamp;
-    private String body;
-    private String fromId;
+public class ChatMessage extends BaseMessage{
+    private String message;
 
-    public String getFromId() {
-        return fromId;
+    public String getMessage() {
+        return message;
     }
 
-    public void setFromId(String fromId) {
-        this.fromId = fromId;
+    public void setMessage(String message) {
+        this.message = message;
     }
-
-    public String getToId() {
-        return toId;
-    }
-
-    public void setToId(String toId) {
-        this.toId = toId;
-    }
-
-    private String toId;
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-
 }
