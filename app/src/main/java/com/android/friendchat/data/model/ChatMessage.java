@@ -6,7 +6,25 @@ package com.android.friendchat.data.model;
 public class ChatMessage {
     private long timestamp;
     private String body;
-    private Author author;
+    private String fromId;
+
+    public String getFromId() {
+        return fromId;
+    }
+
+    public void setFromId(String fromId) {
+        this.fromId = fromId;
+    }
+
+    public String getToId() {
+        return toId;
+    }
+
+    public void setToId(String toId) {
+        this.toId = toId;
+    }
+
+    private String toId;
 
     public long getTimestamp() {
         return timestamp;
@@ -24,11 +42,5 @@ public class ChatMessage {
         this.body = body;
     }
 
-    public Author getAuthor() {
-        return author;
-    }
 
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
 }
