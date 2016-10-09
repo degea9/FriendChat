@@ -22,7 +22,7 @@ public class RoomActivity extends BaseActivity {
     ViewPager mPager;
     @Bind(R.id.tabs)
     TabLayout mTabs;
-
+    RoomPagerAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +38,12 @@ public class RoomActivity extends BaseActivity {
     }
 
     private void setupViewPager() {
-        RoomPagerAdapter adapter = new RoomPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FriendFragment(), getString(R.string.popular));
-        adapter.addFragment(new ChatFragment(), "Chat");
+        mAdapter = new RoomPagerAdapter(getSupportFragmentManager());
+        mAdapter.addFragment(new FriendFragment(), getString(R.string.popular));
+        //adapter.addFragment(new ChatFragment(), "Chat");
         //adapter.addFragment(new PopularFragment(), "THREE");
-        mPager.setAdapter(adapter);
+        mPager.setAdapter(mAdapter);
     }
+
+
 }

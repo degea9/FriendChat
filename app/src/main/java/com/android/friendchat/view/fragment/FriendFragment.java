@@ -1,6 +1,7 @@
 package com.android.friendchat.view.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,14 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.android.friendchat.R;
-import com.android.friendchat.data.model.User;
+import com.android.friendchat.utils.LogUtil;
+import com.android.friendchat.view.activity.ChatActivity;
+import com.android.friendchat.view.activity.RoomActivity;
 import com.android.friendchat.view.adapter.FriendsAdapter;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.auth.FirebaseAuth;
+import com.android.friendchat.view.adapter.FriendsAdapter.FriendAdapterClickListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class FriendFragment extends BaseFragment {
+    private static final String TAG = FriendFragment.class.getSimpleName();
 
     @Bind(R.id.recycler_view)
     RecyclerView rvFriends;
@@ -42,9 +43,22 @@ public class FriendFragment extends BaseFragment {
         View view =  inflater.inflate(R.layout.fragment_friend, container, false);
         ButterKnife.bind(this,view);
         FriendsAdapter adapter = new FriendsAdapter(getActivity().getApplicationContext(),mUserRef);
+        adapter.setListener(listener);
         rvFriends.setAdapter(adapter);
         rvFriends.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
 
+
+    private FriendAdapterClickListener listener = new FriendAdapterClickListener(){
+
+
+        @Override
+        public void setId(String toId) {
+            LogUtil.d(TAG,"toid "+toId);
+            Intent intent = new Intent(getActivity(), ChatActivity.class);
+            intent.putExtra("toId",toId);
+            getActivity().startActivity(intent);
+        }
+    };
 }

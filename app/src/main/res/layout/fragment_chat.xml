@@ -27,6 +27,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/send"/>
         <EditText
+            android:id="@+id/edt_chat_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/btn_send"

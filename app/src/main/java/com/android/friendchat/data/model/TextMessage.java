@@ -1,12 +1,10 @@
 /**
- * Created by tuandang on 10/9/2016.
+ * Created by tuandang on 10/8/2016.
  */
 package com.android.friendchat.data.model;
 
-public class PhotoMessage  {
-    private long timestamp;
-    private String fromId;
-    private String toId;
+public class TextMessage {
+    private String message;
 
     public long getTimestamp() {
         return timestamp;
@@ -32,14 +30,15 @@ public class PhotoMessage  {
         this.toId = toId;
     }
 
-    public String getImageUrl() {
+    private long timestamp;
+    private String fromId;
+    private String toId;
 
-        return imageUrl;
+    public String getMessage() {
+        return message;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setMessage(String message) {
+        this.message = message;
     }
-
-    private String imageUrl;
 }
