@@ -21,28 +21,24 @@ public class MessagesAdapter extends FirebaseRecyclerAdapter<TextMessage,Message
     private Context mContext;
 
     public MessagesAdapter(Context context, DatabaseReference ref) {
-        super(TextMessage.class, R.layout.item_friend, MessagesAdapter.MessagesViewHolder.class, ref);
-        LogUtil.d(TAG, "FriendsAdapter() ");
+        super(TextMessage.class, R.layout.item_chat, MessagesAdapter.MessagesViewHolder.class, ref);
         mContext = context;
     }
     @Override
     protected void populateViewHolder(MessagesViewHolder viewHolder, TextMessage model, int position) {
-
+        LogUtil.d(TAG, "populateViewHolder()position "+position);
+        viewHolder.message.setText(model.getMessage());
     }
 
     static class MessagesViewHolder extends RecyclerView.ViewHolder {
         //@Bind(R.id.user_status)
-        TextView status;
+        TextView message;
         //@Bind(R.id.user_thumbnail)
-        ImageView thumbnail;
-        View mView;
 
         public MessagesViewHolder(View view) {
             super(view);
             //ButterKnife.bind(view);
-            thumbnail = (ImageView) view.findViewById(R.id.user_thumbnail);
-            status = (TextView) view.findViewById(R.id.user_status);
-            mView = view;
+            message = (TextView) view.findViewById(R.id.message);
         }
     }
 }

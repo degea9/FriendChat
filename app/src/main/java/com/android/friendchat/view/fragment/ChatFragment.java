@@ -3,6 +3,7 @@ package com.android.friendchat.view.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.EditText;
 import com.android.friendchat.R;
 import com.android.friendchat.presenter.ChatPresenter;
 import com.android.friendchat.utils.LogUtil;
+import com.android.friendchat.view.adapter.MessagesAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,11 +33,13 @@ public class ChatFragment extends BaseFragment {
     Button btnSend;
     @Bind(R.id.edt_chat_content)
     EditText edtChatContent;
-    @Bind(R.id.rl_send)
+    @Bind(R.id.rv_message)
     RecyclerView rvMessage;
+    private DatabaseReference mMessageRef;
 
     public ChatFragment() {
         mPresenter = new ChatPresenter();
+        mMessageRef = FirebaseDatabase.getInstance().getReference().child("message");
     }
 
     public static ChatFragment newInstance(String toId){
@@ -56,7 +62,9 @@ public class ChatFragment extends BaseFragment {
     }
 
     private void initRecyclerView() {
-
+        MessagesAdapter adapter = new MessagesAdapter(getActivity(),mMessageRef);
+        rvMessage.setAdapter(adapter);
+        rvMessage.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @OnClick(R.id.btn_send)

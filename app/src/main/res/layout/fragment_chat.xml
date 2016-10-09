@@ -5,6 +5,7 @@
     tools:context="com.android.friendchat.view.fragment.ChatFragment">
 
    <android.support.v7.widget.RecyclerView
+       android:id="@+id/rv_message"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:layout_above="@+id/rl_send"

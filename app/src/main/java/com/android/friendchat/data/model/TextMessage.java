@@ -3,6 +3,9 @@
  */
 package com.android.friendchat.data.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TextMessage {
     private String message;
 
@@ -41,4 +44,14 @@ public class TextMessage {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("fromId", fromId);
+        result.put("toId", toId);
+        result.put("message", message);
+        result.put("timestamp", timestamp);
+        return result;
+    }
+
 }
