@@ -33,6 +33,7 @@ public class ChatInteractor {
         Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put("/message/" + messageKey, textMessage.toMap());
         childUpdates.put("/user-message/" + uid + "/" + toId + "/" + messageKey, 1);
+        childUpdates.put("/user-message/" + toId + "/" + uid + "/" + messageKey, 1);
         mRootRef.updateChildren(childUpdates);
     }
 }
