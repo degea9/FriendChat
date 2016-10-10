@@ -3,7 +3,7 @@
  */
 package com.android.friendchat.interactor;
 
-import com.android.friendchat.data.model.TextMessage;
+import com.android.friendchat.data.model.ChatMessage;
 import com.android.friendchat.presenter.ChatPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +23,7 @@ public class ChatInteractor {
     }
 
     public void senTextMessage(String message, String toId) {
-        TextMessage textMessage = new TextMessage();
+        ChatMessage textMessage = new ChatMessage();
         textMessage.setMessage(message);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         textMessage.setFromId(uid);
@@ -31,7 +31,22 @@ public class ChatInteractor {
         textMessage.setTimestamp(Calendar.getInstance().getTimeInMillis());
         String messageKey = mRootRef.child("message").push().getKey();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/message/" + messageKey, textMessage.toMap());
+        childUpdates.put("/message/" + messageKey, textMessage.textToMap());
+        childUpdates.put("/user-message/" + uid + "/" + toId + "/" + messageKey, 1);
+        childUpdates.put("/user-message/" + toId + "/" + uid + "/" + messageKey, 1);
+        mRootRef.updateChildren(childUpdates);
+    }
+
+    public void senPhotoMessage(String url, String toId) {
+        ChatMessage textMessage = new ChatMessage();
+        textMessage.setImageUrl(url);
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        textMessage.setFromId(uid);
+        textMessage.setToId(toId);
+        textMessage.setTimestamp(Calendar.getInstance().getTimeInMillis());
+        String messageKey = mRootRef.child("message").push().getKey();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/message/" + messageKey, textMessage.photoToMap());
         childUpdates.put("/user-message/" + uid + "/" + toId + "/" + messageKey, 1);
         childUpdates.put("/user-message/" + toId + "/" + uid + "/" + messageKey, 1);
         mRootRef.updateChildren(childUpdates);

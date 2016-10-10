@@ -3,7 +3,6 @@
  */
 package com.android.friendchat.presenter;
 
-import com.android.friendchat.data.model.TextMessage;
 import com.android.friendchat.interactor.ChatInteractor;
 
 public class ChatPresenter extends BasePresenter {
@@ -13,5 +12,9 @@ public class ChatPresenter extends BasePresenter {
     }
     public void senTextMessage(String message,String toId){
         mInteractor.senTextMessage(message,toId);
+    }
+
+    public void senPhotoMessage(String url,String toId){
+        mInteractor.senPhotoMessage(url,toId);
     }
 }
