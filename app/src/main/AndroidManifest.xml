@@ -31,7 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.RoomActivity"></activity>
+        <activity android:name=".view.activity.RoomActivity"
+            android:screenOrientation="portrait"></activity>
 
         <!-- fb activity -->
         <activity

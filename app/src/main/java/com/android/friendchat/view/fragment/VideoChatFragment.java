@@ -1,6 +1,15 @@
 package com.android.friendchat.view.fragment;
 
 
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
 import com.android.friendchat.R;
 import com.android.friendchat.data.api.ApiClient;
 import com.android.friendchat.data.api.SessionJson;
@@ -14,16 +23,6 @@ import com.opentok.android.Session;
 import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +126,6 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
         subscriber.getRenderer().setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE,
                 BaseVideoRenderer.STYLE_VIDEO_FILL);
         mSession.subscribe(subscriber);
-        //mSubscribers.add(subscriber);
 
     }
 
@@ -137,8 +135,8 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
         for(int i=0;i<mSubscribers.size();i++ ){
             Subscriber subscriber = mSubscribers.get(i);
             if(subscriber.getStream().getConnection().getConnectionId()==stream.getConnection().getConnectionId()){
-                mSubscribers.remove(i);
-                mVideosAdapter.notifyDataSetChanged();
+                mVideosView.removeViewAt(i);
+                mVideosAdapter.removeDataAt(i);
             }
         }
 //        if (mSubscriber != null) {

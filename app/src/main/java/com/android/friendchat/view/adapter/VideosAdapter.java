@@ -48,6 +48,12 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideosView
         notifyDataSetChanged();
     }
 
+    public void removeDataAt(int position ){
+        LogUtil.d(TAG,"addSubsriber");
+        mSubscribers.remove(position);
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public VideosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
