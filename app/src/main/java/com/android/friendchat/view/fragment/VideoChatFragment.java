@@ -125,6 +125,7 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
         subscriber.setSubscriberListener(this);
         subscriber.getRenderer().setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE,
                 BaseVideoRenderer.STYLE_VIDEO_FILL);
+        mSubscribers.add(subscriber);
         mSession.subscribe(subscriber);
 
     }
@@ -137,6 +138,8 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
             if(subscriber.getStream().getConnection().getConnectionId()==stream.getConnection().getConnectionId()){
                 mVideosView.removeViewAt(i);
                 mVideosAdapter.removeDataAt(i);
+                mVideosAdapter.notifyItemRemoved(i);
+                mVideosAdapter.notifyItemRangeChanged(i,mSubscribers.size());
             }
         }
 //        if (mSubscriber != null) {
@@ -168,8 +171,8 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
 
     @Override
     public void onConnected(SubscriberKit subscriberKit) {
-        LogUtil.d(TAG, "SubscriberKit onConnected");
-        mVideosAdapter.addSubsriber((Subscriber) subscriberKit);
+        LogUtil.d(TAG, "SubscriberKit onConnected "+subscriberKit.getStream().getConnection().getConnectionId());
+        mVideosAdapter.notifyDataSetChanged();
 
         //if (mSubscriber != null) mSubscriberViewContainer.addView(mSubscriber.getView());
         //if (mSubscriber2 != null) mSubscriberViewContainer2.addView(mSubscriber2.getView());

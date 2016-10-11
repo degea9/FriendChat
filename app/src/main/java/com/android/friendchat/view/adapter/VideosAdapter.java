@@ -45,13 +45,13 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideosView
     public void addSubsriber(Subscriber subscriber){
         LogUtil.d(TAG,"addSubsriber");
         mSubscribers.add(subscriber);
-        notifyDataSetChanged();
+        //notifyDataSetChanged();
     }
 
     public void removeDataAt(int position ){
         LogUtil.d(TAG,"addSubsriber");
         mSubscribers.remove(position);
-        notifyDataSetChanged();
+        //notifyDataSetChanged();
     }
 
 
@@ -66,7 +66,12 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideosView
     @Override
     public void onBindViewHolder(final VideosViewHolder holder, int position) {
         Subscriber subscriber = mSubscribers.get(position);
-
+        if (subscriber.getView() != null) {
+            ViewGroup parentViewGroup = (ViewGroup) subscriber.getView().getParent();
+            if (parentViewGroup != null) {
+                parentViewGroup.removeAllViews();
+            }
+        }
         holder.videoContainer.addView(subscriber.getView());
 
     }
