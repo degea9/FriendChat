@@ -1,15 +1,6 @@
 package com.android.friendchat.view.fragment;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-
 import com.android.friendchat.R;
 import com.android.friendchat.data.api.ApiClient;
 import com.android.friendchat.data.api.SessionJson;
@@ -23,6 +14,15 @@ import com.opentok.android.Session;
 import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +49,14 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
 
     public VideoChatFragment() {
         // Required empty public constructor
+    }
+
+    public static VideoChatFragment newInstance(){
+        VideoChatFragment fragment = new VideoChatFragment();
+        Bundle bundle = new Bundle();
+        //bundle.putString("sessionId",)
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
 

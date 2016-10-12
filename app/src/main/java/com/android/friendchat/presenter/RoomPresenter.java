@@ -8,6 +8,14 @@ import com.android.friendchat.interactor.RoomInteractor;
 public class RoomPresenter {
     private RoomInteractor mInteractor;
     public RoomPresenter(){
-        mInteractor = new RoomInteractor();
+        mInteractor = new RoomInteractor(this);
+    }
+
+    public void senTextMessage(String message,String toId){
+        mInteractor.senTextMessage(message,toId);
+    }
+
+    public void senPhotoMessage(String url,String toId){
+        mInteractor.senPhotoMessage(url,toId);
     }
 }

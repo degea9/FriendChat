@@ -45,21 +45,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20sp"
-                        android:drawableLeft="@drawable/ic_videocam_black_48dp"
+                        android:drawableTop="@drawable/ic_videocam_black_48dp"
+                        android:gravity="center_horizontal"
                         android:text="123"/>
                 <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20sp"
-                        android:drawableLeft="@drawable/ic_person_black_48dp"
+                        android:drawableTop="@drawable/ic_person_black_48dp"
+                        android:gravity="center_horizontal"
                         android:text="123"/>
                 <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="20sp"
-                        android:drawableLeft="@drawable/ic_favorite_black_48dp"
+                        android:drawableTop="@drawable/ic_favorite_black_48dp"
+                        android:gravity="center_horizontal"
                         android:text="123"/>
 
             </LinearLayout>

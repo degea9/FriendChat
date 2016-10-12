@@ -49,16 +49,16 @@ public class PopularFragment extends BaseFragment {
     }
 
     private void initRecyclerView() {
-        Room room1 = new Room();
-        room1.setName("Room1");
-        room1.setSessionId("sessionID1");
-        room1.setThumbnail("https://firebasestorage.googleapis.com/v0/b/friendchat-260ce.appspot.com/o/Photos%2F93?alt=media&token=f9cb1b42-bcc5-4785-9701-6b7dd932180d");
-        Room room2 = new Room();
-        room2.setName("Room2");
-        room2.setSessionId("sessionID2");
-        room2.setThumbnail("https://firebasestorage.googleapis.com/v0/b/friendchat-260ce.appspot.com/o/Photos%2F93?alt=media&token=f9cb1b42-bcc5-4785-9701-6b7dd932180d");
-        mReference.push().setValue(room1);
-        mReference.push().setValue(room2);
+//        Room room1 = new Room();
+//        room1.setName("Room1");
+//        room1.setSessionId("sessionID1");
+//        room1.setThumbnail("https://firebasestorage.googleapis.com/v0/b/friendchat-260ce.appspot.com/o/Photos%2F93?alt=media&token=f9cb1b42-bcc5-4785-9701-6b7dd932180d");
+//        Room room2 = new Room();
+//        room2.setName("Room2");
+//        room2.setSessionId("sessionID2");
+//        room2.setThumbnail("https://firebasestorage.googleapis.com/v0/b/friendchat-260ce.appspot.com/o/Photos%2F93?alt=media&token=f9cb1b42-bcc5-4785-9701-6b7dd932180d");
+//        mReference.push().setValue(room1);
+//        mReference.push().setValue(room2);
         RoomsAdapter adapter = new RoomsAdapter(getActivity(),mReference);
         mRecyclerView.setAdapter(adapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
