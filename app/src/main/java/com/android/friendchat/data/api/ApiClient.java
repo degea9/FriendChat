@@ -29,4 +29,8 @@ public class ApiClient {
     public void getSession(Callback<SessionJson> callback){
         service.getSession().enqueue(callback);
     }
+
+    public void getToken(String sessionId,Callback<SessionJson> callback){
+        service.generateToken(sessionId).enqueue(callback);
+    }
 }

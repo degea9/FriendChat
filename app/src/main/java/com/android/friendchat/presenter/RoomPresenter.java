@@ -1,5 +1,6 @@
 package com.android.friendchat.presenter;
 
+import com.android.friendchat.data.model.Room;
 import com.android.friendchat.interactor.RoomInteractor;
 
 /**
@@ -17,5 +18,9 @@ public class RoomPresenter {
 
     public void senPhotoMessage(String url,String toId){
         mInteractor.senPhotoMessage(url,toId);
+    }
+
+    public void createRoom(Room room){
+        mInteractor.createRoom(room);
     }
 }

@@ -47,4 +47,5 @@
     <string name="save">Save</string>
     <string name="edit">Edit</string>
     <string name="send">Send</string>
+    <string name="room_name">Name of the room</string>
 </resources>

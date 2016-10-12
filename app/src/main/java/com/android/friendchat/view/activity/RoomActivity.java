@@ -3,6 +3,7 @@ package com.android.friendchat.view.activity;
 import com.android.friendchat.R;
 import com.android.friendchat.view.adapter.RoomPagerAdapter;
 import com.android.friendchat.view.fragment.ChatFragment;
+import com.android.friendchat.view.fragment.CreateRoomFragment;
 import com.android.friendchat.view.fragment.FriendFragment;
 import com.android.friendchat.view.fragment.PopularFragment;
 import com.android.friendchat.view.fragment.RoomChatFragment;
@@ -44,7 +45,8 @@ public class RoomActivity extends BaseActivity {
         mAdapter.addFragment(new FriendFragment(), getString(R.string.popular));
        // mAdapter.addFragment(new VideoChatFragment(), "Video chat");
         mAdapter.addFragment(new PopularFragment(), "Room");
-        mAdapter.addFragment(new RoomChatFragment(), "TestRoomChat");
+        //mAdapter.addFragment(new RoomChatFragment(), "TestRoomChat");
+        mAdapter.addFragment(new CreateRoomFragment(), "createRoomChat");
         mPager.setAdapter(mAdapter);
     }
 
