@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import com.android.friendchat.R;
 import com.android.friendchat.data.model.ChatMessage;
+import com.android.friendchat.data.model.User;
 import com.android.friendchat.utils.LogUtil;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.squareup.picasso.Picasso;
@@ -28,14 +29,16 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class RoomMessagesAdapter extends FirebaseRecyclerAdapter<Integer,RoomMessagesAdapter.MessagesViewHolder> {
-    private static final String TAG = MessagesAdapter.class.getSimpleName();
+    private static final String TAG = RoomMessagesAdapter.class.getSimpleName();
     private Context mContext;
     private DatabaseReference mMessageRef;
+    private DatabaseReference mUserRef;
 
     public RoomMessagesAdapter(Context context, DatabaseReference ref) {
         super(Integer.class, R.layout.item_chat, RoomMessagesAdapter.MessagesViewHolder.class, ref);
         mContext = context;
         mMessageRef = FirebaseDatabase.getInstance().getReference().child("message");
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("user");
     }
     @Override
     protected void populateViewHolder(final MessagesViewHolder viewHolder, Integer integer, int position) {
@@ -69,6 +72,19 @@ public class RoomMessagesAdapter extends FirebaseRecyclerAdapter<Integer,RoomMes
                 }else{
                     viewHolder.message.setText(model.getMessage());
                 }
+
+                mUserRef.child(model.getFromId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
+                        LogUtil.d(TAG,"avatar "+user.getAvatar());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
