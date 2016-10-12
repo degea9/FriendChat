@@ -1,65 +1,75 @@
+/**
+ * Created by tuandang on 10/8/2016.
+ */
 package com.android.friendchat.view.adapter;
+
+import com.google.firebase.database.DatabaseReference;
 
 import com.android.friendchat.R;
 import com.android.friendchat.data.model.Room;
+import com.android.friendchat.utils.LogUtil;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.squareup.picasso.Picasso;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * Created by hp 400 on 10/5/2016.
- */
-public class RoomsAdapter extends RecyclerView.Adapter<RoomsAdapter.RoomViewHolder> {
+public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.RoomsViewHolder>  {
 
+    private static final String TAG = RoomsAdapter.class.getSimpleName();
     private Context mContext;
-    private List<Room> mRooms;
 
-    static class RoomViewHolder extends RecyclerView.ViewHolder {
+    public RoomsAdapter(Context context, DatabaseReference ref) {
+        super(Room.class, R.layout.item_room, RoomsAdapter.RoomsViewHolder.class, ref);
+        LogUtil.d(TAG, "FriendsAdapter() ");
+        mContext = context;
+    }
+
+    @Override
+    protected void populateViewHolder(RoomsViewHolder viewHolder, Room model,final int position) {
+        Picasso.with(mContext).load(model.getThumbnail()).into(viewHolder.thumbnail);
+        viewHolder.name.setText(model.getName());
+        LogUtil.d(TAG, "model.getName() " + model.getName());
+        if (mListener != null) {
+            viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClick1(position);
+                }
+            });
+        }
+    }
+
+    public void setListener(RoomAdapterClickListener listener){
+        mListener = listener;
+    }
+
+    public void onClick1(int position) {
+        mListener.setId(getRef(position).getKey());
+    }
+
+    static class RoomsViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.room_name)
         TextView name;
         @Bind(R.id.room_thumbnail)
         ImageView thumbnail;
+        View mView;
 
-        public RoomViewHolder(View view) {
+        public RoomsViewHolder(View view) {
             super(view);
-            ButterKnife.bind(view);
+            ButterKnife.bind(this, view);
+            mView = view;
         }
     }
 
-
-    public RoomsAdapter(Context mContext, List<Room> roomList) {
-        this.mContext = mContext;
-        mRooms = roomList;
-    }
-
-    @Override
-    public RoomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.room_card, parent, false);
-
-        return new RoomViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(final RoomViewHolder holder, int position) {
-        Room room = mRooms.get(position);
-        holder.name.setText(room.getName());
-
-    }
-
-
-    @Override
-    public int getItemCount() {
-        return mRooms.size();
+    public RoomAdapterClickListener mListener;
+    public interface RoomAdapterClickListener {
+        void setId(String toId);
     }
 }

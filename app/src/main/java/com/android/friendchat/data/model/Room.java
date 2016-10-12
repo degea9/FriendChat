@@ -4,8 +4,27 @@ package com.android.friendchat.data.model;
  * Created by hp 400 on 10/5/2016.
  */
 public class Room {
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    //session used to connect to tokbox
+    private String sessionId;
     private String name;
-    private int joinedUsers;
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    private String thumbnail;
 
     public String getName() {
         return name;
@@ -15,30 +34,4 @@ public class Room {
         this.name = name;
     }
 
-    private int favoriteNumber;
-    private int streamingNumber;
-
-    public int getJoinedUsers() {
-        return joinedUsers;
-    }
-
-    public void setJoinedUsers(int joinedUsers) {
-        this.joinedUsers = joinedUsers;
-    }
-
-    public int getFavoriteNumber() {
-        return favoriteNumber;
-    }
-
-    public void setFavoriteNumber(int favoriteNumber) {
-        this.favoriteNumber = favoriteNumber;
-    }
-
-    public int getStreamingNumber() {
-        return streamingNumber;
-    }
-
-    public void setStreamingNumber(int streamingNumber) {
-        this.streamingNumber = streamingNumber;
-    }
 }
