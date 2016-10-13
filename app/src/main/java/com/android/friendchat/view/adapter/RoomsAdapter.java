@@ -40,7 +40,7 @@ public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.Roo
             viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onClick1(position);
+                    mListener.setId(getRef(position).getKey());
                 }
             });
         }
@@ -48,10 +48,6 @@ public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.Roo
 
     public void setListener(RoomAdapterClickListener listener){
         mListener = listener;
-    }
-
-    public void onClick1(int position) {
-        mListener.setId(getRef(position).getKey());
     }
 
     static class RoomsViewHolder extends RecyclerView.ViewHolder {
@@ -70,6 +66,6 @@ public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.Roo
 
     public RoomAdapterClickListener mListener;
     public interface RoomAdapterClickListener {
-        void setId(String toId);
+        void setId(String roomId);
     }
 }

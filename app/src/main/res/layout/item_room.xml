@@ -11,19 +11,22 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/card_margin"
             android:elevation="3dp"
-            card_view:cardCornerRadius="@dimen/card_album_radius">
+            card_view:cardCornerRadius="@dimen/card_album_radius"
+            android:clickable="false">
 
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clickable="false">
 
             <ImageView
                     android:id="@+id/room_thumbnail"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/album_cover_height"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:scaleType="fitXY"/>
+                    android:clickable="false"
+                    android:scaleType="fitXY"
+                    />
 
             <TextView
                     android:id="@+id/room_name"

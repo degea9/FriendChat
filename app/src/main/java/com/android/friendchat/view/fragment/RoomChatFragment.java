@@ -41,13 +41,21 @@ public class RoomChatFragment extends BaseFragment {
     EditText edtChatContent;
     @Bind(R.id.rv_message)
     RecyclerView rvMessage;
-    private String roomId = "-KTrN4blnsg0TkkY7Kj9";
+    private String roomId ;
     StorageReference mStorageRef;
     private DatabaseReference mRoomMessageRef;
     public RoomChatFragment() {
         mPresenter = new RoomPresenter();
         mRoomMessageRef = FirebaseDatabase.getInstance().getReference().child("room-message");
 
+    }
+
+    public static RoomChatFragment newInstance(String roomId){
+        RoomChatFragment fragment = new RoomChatFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("roomId", roomId);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
 
@@ -62,7 +70,7 @@ public class RoomChatFragment extends BaseFragment {
     }
 
     private void initRecyclerView() {
-        //roomId = getArguments().getString("roomId");
+        roomId = getArguments().getString("roomId");
         RoomMessagesAdapter adapter = new RoomMessagesAdapter(getActivity(),mRoomMessageRef.child(roomId));
         rvMessage.setAdapter(adapter);
         rvMessage.setLayoutManager(new LinearLayoutManager(getActivity()));
