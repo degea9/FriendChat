@@ -77,7 +77,8 @@ public class RoomMessagesAdapter extends FirebaseRecyclerAdapter<Integer,RoomMes
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         User user = dataSnapshot.getValue(User.class);
-                        LogUtil.d(TAG,"avatar "+user.getAvatar());
+                        LogUtil.d(TAG, "avatar " + user.getAvatar());
+                        viewHolder.username.setText(user.getFirstName());
                     }
 
                     @Override
@@ -95,6 +96,8 @@ public class RoomMessagesAdapter extends FirebaseRecyclerAdapter<Integer,RoomMes
     }
 
     static class MessagesViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.username)
+        TextView username;
         @Bind(R.id.message)
         TextView message;
         @Bind(R.id.message_date)

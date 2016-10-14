@@ -18,6 +18,7 @@ import com.opentok.android.SubscriberKit;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,10 +52,10 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
         // Required empty public constructor
     }
 
-    public static VideoChatFragment newInstance(){
+    public static VideoChatFragment newInstance(String sessionId){
         VideoChatFragment fragment = new VideoChatFragment();
         Bundle bundle = new Bundle();
-        //bundle.putString("sessionId",)
+        bundle.putString("sessionId",sessionId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -75,11 +76,12 @@ public class VideoChatFragment extends Fragment implements Session.SessionListen
     private void initRecyclerView() {
         mVideosAdapter = new VideosAdapter(getActivity(),mSubscribers);
         mVideosView.setAdapter(mVideosAdapter);
-        mVideosView.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        mVideosView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void getOpentokSession() {
-        ApiClient.getClient().getSession(mCallback);
+        String sessionId = getArguments().getString("sessionId");
+        ApiClient.getClient().getToken(sessionId,mCallback);
     }
 
     private void initializeSession(SessionJson sessionJson) {

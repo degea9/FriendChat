@@ -1,6 +1,7 @@
 package com.android.friendchat.view.activity;
 
 import com.android.friendchat.data.model.User;
+import com.android.friendchat.utils.BitmapUtils;
 import com.android.friendchat.utils.DatabaseUtils;
 import com.android.friendchat.view.contract.ProfileContract;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,6 +20,7 @@ import com.android.friendchat.view.custom.MLRoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +28,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -97,21 +102,29 @@ public class ProfileActivity extends BaseActivity implements ProfileContract {
         super.onActivityResult(requestCode, resultCode, data);
         if(REQUEST_GALLERY_CODE==requestCode){
             Uri uri = data.getData();
+            try {
+                Bitmap bitmap = BitmapUtils.decodeUri(getApplicationContext(),uri,300);
+                StorageReference filePath = mStorageRef.child("Photos").child(uri.getLastPathSegment());
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] bitmapData = baos.toByteArray();
+                filePath.putBytes(bitmapData).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        dissmissProgressDialog();
+                        mUserRef = FirebaseDatabase.getInstance().getReference().child("user");
+                        User user = new User();
+                        user.setAvatar(taskSnapshot.getDownloadUrl().toString());
+                        mUserRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+                        LogUtil.d(TAG, "upload success " + taskSnapshot.getDownloadUrl().toString());
+                        Picasso.with(ProfileActivity.this).load(taskSnapshot.getDownloadUrl()).into(mAvatar);
+                        Toast.makeText(ProfileActivity.this,"upload success",Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
 
-            StorageReference filePath = mStorageRef.child("Photos").child(uri.getLastPathSegment());
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    dissmissProgressDialog();
-                    mUserRef = FirebaseDatabase.getInstance().getReference().child("user");
-                    User user = new User();
-                    user.setAvatar(taskSnapshot.getDownloadUrl().toString());
-                    mUserRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
-                    LogUtil.d(TAG, "upload success " + taskSnapshot.getDownloadUrl().toString());
-                    Picasso.with(ProfileActivity.this).load(taskSnapshot.getDownloadUrl()).into(mAvatar);
-                    Toast.makeText(ProfileActivity.this,"upload success",Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 

@@ -32,7 +32,7 @@ public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.Roo
     }
 
     @Override
-    protected void populateViewHolder(RoomsViewHolder viewHolder, Room model,final int position) {
+    protected void populateViewHolder(RoomsViewHolder viewHolder, final Room model,final int position) {
         Picasso.with(mContext).load(model.getThumbnail()).into(viewHolder.thumbnail);
         viewHolder.name.setText(model.getName());
         LogUtil.d(TAG, "model.getName() " + model.getName());
@@ -40,7 +40,7 @@ public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.Roo
             viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mListener.setId(getRef(position).getKey());
+                    mListener.setId(getRef(position).getKey(),model.getSessionId());
                 }
             });
         }
@@ -66,6 +66,6 @@ public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.Roo
 
     public RoomAdapterClickListener mListener;
     public interface RoomAdapterClickListener {
-        void setId(String roomId);
+        void setId(String roomId,String sessionId);
     }
 }

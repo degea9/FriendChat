@@ -41,15 +41,15 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements LoginContract {
     private static final String TAG = LoginActivity.class.getSimpleName();
-    @Bind(R.id.email)
-    EditText txtEmail;
-    @Bind(R.id.password)
-    EditText txtPassword;
-    @Bind(R.id.progressBar)
-    ProgressBar progressBar;
-    @Bind(R.id.fb_login_button)
-    LoginButton fbLoginButton;
-    LoginPresenter mPresenter;
+//    @Bind(R.id.email)
+//    EditText txtEmail;
+//    @Bind(R.id.password)
+//    EditText txtPassword;
+//    @Bind(R.id.progressBar)
+//    ProgressBar progressBar;
+//    @Bind(R.id.fb_login_button)
+//    LoginButton fbLoginButton;
+//    LoginPresenter mPresenter;
     //FaceBook
     private CallbackManager mCallbackManager;
     private FirebaseAuth mAuth;
@@ -59,33 +59,33 @@ public class LoginActivity extends BaseActivity implements LoginContract {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ButterKnife.bind(this);
-        mAuth = FirebaseAuth.getInstance();
-        mPresenter = new LoginPresenter(this);
-        mCallbackManager = CallbackManager.Factory.create();
-        fbLoginButton.setReadPermissions("email", "public_profile");
-        fbLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                LogUtil.d(TAG, "facebook:onSuccess:" + loginResult);
-                Toast.makeText(getApplicationContext(),"facebook:onSuccess:",Toast.LENGTH_SHORT).show();
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                LogUtil.d(TAG, "facebook:onCancel");
-                Toast.makeText(getApplicationContext(),"facebook:onCancel",Toast.LENGTH_SHORT).show();
-                // ...
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-                Log.d(TAG, "facebook:onError", error);
-                Toast.makeText(getApplicationContext(),"facebook:onError",Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ButterKnife.bind(this);
+//        mAuth = FirebaseAuth.getInstance();
+//        mPresenter = new LoginPresenter(this);
+//        mCallbackManager = CallbackManager.Factory.create();
+//        fbLoginButton.setReadPermissions("email", "public_profile");
+//        fbLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                LogUtil.d(TAG, "facebook:onSuccess:" + loginResult);
+//                Toast.makeText(getApplicationContext(),"facebook:onSuccess:",Toast.LENGTH_SHORT).show();
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                LogUtil.d(TAG, "facebook:onCancel");
+//                Toast.makeText(getApplicationContext(),"facebook:onCancel",Toast.LENGTH_SHORT).show();
+//                // ...
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//
+//                Log.d(TAG, "facebook:onError", error);
+//                Toast.makeText(getApplicationContext(),"facebook:onError",Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
     }
@@ -118,23 +118,23 @@ public class LoginActivity extends BaseActivity implements LoginContract {
                 });
     }
 
-    @OnClick(R.id.btn_login)
-    public void login(){
-        progressBar.setVisibility(View.VISIBLE);
-        String email = txtEmail.getText().toString().trim();
-        String password = txtPassword.getText().toString().trim();
-        mPresenter.login(email, password);
-    }
-
-    public void facebookLogin(){
-        progressBar.setVisibility(View.VISIBLE);
-    }
+//    @OnClick(R.id.btn_login)
+//    public void login(){
+//        progressBar.setVisibility(View.VISIBLE);
+//        String email = txtEmail.getText().toString().trim();
+//        String password = txtPassword.getText().toString().trim();
+//        mPresenter.login(email, password);
+//    }
+//
+//    public void facebookLogin(){
+//        progressBar.setVisibility(View.VISIBLE);
+//    }
 
     @Override
     public void loginSuccess() {
-        progressBar.setVisibility(View.GONE);
-        navigateTo(RoomActivity.class);
-        Toast.makeText(this,"login success",Toast.LENGTH_LONG).show();
+//        progressBar.setVisibility(View.GONE);
+//        navigateTo(ProfileActivity.class);
+//        Toast.makeText(this,"login success",Toast.LENGTH_LONG).show();
     }
 
     @Override

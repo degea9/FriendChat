@@ -54,9 +54,10 @@ public class PopularFragment extends BaseFragment {
         RoomsAdapter adapter = new RoomsAdapter(getActivity(),mReference);
         adapter.setListener(new RoomsAdapter.RoomAdapterClickListener() {
             @Override
-            public void setId(String roomId) {
+            public void setId(String roomId,String sessionId) {
                 Intent intent = new Intent(getActivity(), RoomChatActivity.class);
                 intent.putExtra("roomId",roomId);
+                intent.putExtra("sessionId",sessionId);
                 startActivity(intent);
             }
         });

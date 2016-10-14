@@ -3,10 +3,10 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               tools:context="com.android.friendchat.view.fragment.VideoChatFragment"
-              android:orientation="vertical">
+              android:orientation="horizontal">
 
     <FrameLayout
-            android:layout_width="fill_parent"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/publisher_container"/>
 
