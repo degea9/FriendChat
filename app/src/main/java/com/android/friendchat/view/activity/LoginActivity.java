@@ -46,7 +46,6 @@ public class LoginActivity extends BaseActivity implements LoginContract {
 //    @Bind(R.id.password)
 //    EditText txtPassword;
 //    @Bind(R.id.progressBar)
-//    ProgressBar progressBar;
 //    @Bind(R.id.fb_login_button)
 //    LoginButton fbLoginButton;
 //    LoginPresenter mPresenter;
@@ -59,7 +58,7 @@ public class LoginActivity extends BaseActivity implements LoginContract {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        ButterKnife.bind(this);
+        ButterKnife.bind(this);
 //        mAuth = FirebaseAuth.getInstance();
 //        mPresenter = new LoginPresenter(this);
 //        mCallbackManager = CallbackManager.Factory.create();
@@ -118,17 +117,16 @@ public class LoginActivity extends BaseActivity implements LoginContract {
                 });
     }
 
-//    @OnClick(R.id.btn_login)
-//    public void login(){
-//        progressBar.setVisibility(View.VISIBLE);
+    @OnClick(R.id.btn_login)
+    public void login(){
+        showProgressDialog("Authenticating...");
 //        String email = txtEmail.getText().toString().trim();
 //        String password = txtPassword.getText().toString().trim();
 //        mPresenter.login(email, password);
-//    }
-//
-//    public void facebookLogin(){
-//        progressBar.setVisibility(View.VISIBLE);
-//    }
+    }
+
+    public void facebookLogin(){
+    }
 
     @Override
     public void loginSuccess() {

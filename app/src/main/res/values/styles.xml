@@ -26,16 +26,14 @@
 
         <item name="colorControlNormal">@color/iron</item>
         <item name="colorControlActivated">@color/red</item>
-        <item name="colorControlHighlight">@color/pink</item>
+        <item name="colorControlHighlight">@color/indigo</item>
         <item name="android:textColorHint">@color/iron</item>
 
-        <item name="colorButtonNormal">@color/red</item>
+        <item name="colorButtonNormal">@color/pink</item>
     </style>
 
-    <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
-        <item name="colorAccent">@color/white</item>
-        <item name="android:textColorPrimary">@color/iron</item>
-        <item name="android:background">@color/primary</item>
-    </style>
+
+
+
 
 </resources>
