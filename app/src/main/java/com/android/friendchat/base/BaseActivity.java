@@ -14,12 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 public class BaseActivity extends AppCompatActivity {
     private MaterialDialog mMessageDialog;
     private MaterialDialog mProgressDialog;
-    protected void navigateTo(Class<?> cls){
+    public void navigateTo(Class<?> cls){
         Intent intent = new Intent(this,cls);
         startActivity(intent);
     }
 
-    protected void showProgressDialog(String message){
+    public void showProgressDialog(String message){
         mProgressDialog =new MaterialDialog.Builder(this)
                 .content(message)
                 .widgetColorRes(R.color.pink)
@@ -29,11 +29,11 @@ public class BaseActivity extends AppCompatActivity {
         mProgressDialog.show();
     }
 
-    protected void dissmissProgressDialog(){
+    public void dissmissProgressDialog(){
        if(mProgressDialog!=null)mProgressDialog.dismiss();
     }
 
-    protected void showMessageDialog(String message){
+    public void showMessageDialog(String message){
         mMessageDialog =new MaterialDialog.Builder(this)
                 .theme(Theme.LIGHT)
                 .content(message)
@@ -41,5 +41,12 @@ public class BaseActivity extends AppCompatActivity {
                 .positiveColorRes(R.color.black)
                 .show();
         mMessageDialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mMessageDialog!=null) mMessageDialog.dismiss();
+        if(mProgressDialog!=null) mProgressDialog.dismiss();
     }
 }

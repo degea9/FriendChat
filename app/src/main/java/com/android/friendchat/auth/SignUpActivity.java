@@ -1,7 +1,6 @@
-package com.android.friendchat.view.activity;
+package com.android.friendchat.auth;
 
 import com.android.friendchat.R;
-import com.android.friendchat.auth.LoginActivity;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.presenter.SingUpPresenter;
 import com.android.friendchat.view.contract.SingUpContract;
