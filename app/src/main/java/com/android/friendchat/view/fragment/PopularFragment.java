@@ -1,12 +1,12 @@
 package com.android.friendchat.view.fragment;
 
 
+import com.android.friendchat.base.BaseFragment;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import com.android.friendchat.R;
 import com.android.friendchat.presenter.RoomPresenter;
-import com.android.friendchat.view.activity.RoomActivity;
 import com.android.friendchat.view.activity.RoomChatActivity;
 import com.android.friendchat.view.adapter.RoomsAdapter;
 

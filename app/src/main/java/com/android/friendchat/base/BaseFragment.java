@@ -1,4 +1,4 @@
-package com.android.friendchat.view.fragment;
+package com.android.friendchat.base;
 
 import android.support.v4.app.Fragment;
 

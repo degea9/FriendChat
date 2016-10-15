@@ -1,6 +1,7 @@
 package com.android.friendchat.view.fragment;
 
 
+import com.android.friendchat.base.BaseFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -10,12 +11,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import com.android.friendchat.R;
-import com.android.friendchat.data.model.User;
 import com.android.friendchat.presenter.ChatPresenter;
 import com.android.friendchat.utils.FireBaseUtils;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.adapter.MessagesAdapter;
-import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -26,9 +25,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

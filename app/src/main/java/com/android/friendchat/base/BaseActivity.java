@@ -1,4 +1,4 @@
-package com.android.friendchat.view.activity;
+package com.android.friendchat.base;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.Theme;

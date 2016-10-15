@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.friendchat.R;
+import com.android.friendchat.base.BaseFragment;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.activity.ChatActivity;
-import com.android.friendchat.view.activity.RoomActivity;
 import com.android.friendchat.view.adapter.FriendsAdapter;
 import com.android.friendchat.view.adapter.FriendsAdapter.FriendAdapterClickListener;
 import com.google.firebase.database.DatabaseReference;

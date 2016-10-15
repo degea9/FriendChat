@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.friendchat.R;
-import com.android.friendchat.view.activity.BaseActivity;
+import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.view.activity.ProfileActivity;
 import com.android.friendchat.view.contract.AuthContract;
 import com.facebook.AccessToken;

@@ -1,6 +1,7 @@
 package com.android.friendchat.view.fragment;
 
 
+import com.android.friendchat.base.BaseFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

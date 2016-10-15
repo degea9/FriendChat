@@ -1,5 +1,6 @@
 package com.android.friendchat.view.activity;
 
+import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.data.model.User;
 import com.android.friendchat.utils.BitmapUtils;
 import com.android.friendchat.utils.DatabaseUtils;
@@ -35,7 +36,6 @@ import java.io.FileNotFoundException;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends BaseActivity implements ProfileContract {
     private static final String TAG = ProfileActivity.class.getSimpleName();
