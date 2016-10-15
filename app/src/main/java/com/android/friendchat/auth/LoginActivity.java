@@ -1,4 +1,4 @@
-package com.android.friendchat.view.activity;
+package com.android.friendchat.auth;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.friendchat.R;
-import com.android.friendchat.presenter.AuthPresenter;
+import com.android.friendchat.view.activity.BaseActivity;
+import com.android.friendchat.view.activity.ProfileActivity;
 import com.android.friendchat.view.contract.AuthContract;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;

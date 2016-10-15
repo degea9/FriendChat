@@ -1,4 +1,4 @@
-package com.android.friendchat.interactor;
+package com.android.friendchat.auth;
 
 /**
  * Created by APC on 10/15/2016.

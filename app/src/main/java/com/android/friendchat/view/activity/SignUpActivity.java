@@ -1,13 +1,12 @@
 package com.android.friendchat.view.activity;
 
 import com.android.friendchat.R;
+import com.android.friendchat.auth.LoginActivity;
 import com.android.friendchat.presenter.SingUpPresenter;
 import com.android.friendchat.view.contract.SingUpContract;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 

@@ -1,7 +1,6 @@
-package com.android.friendchat.interactor;
+package com.android.friendchat.auth;
 
 import com.android.friendchat.data.validator.Validator;
-import com.android.friendchat.presenter.AuthPresenter;
 import com.android.friendchat.utils.LogUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

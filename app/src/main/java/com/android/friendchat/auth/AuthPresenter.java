@@ -1,7 +1,5 @@
-package com.android.friendchat.presenter;
+package com.android.friendchat.auth;
 
-import com.android.friendchat.interactor.AuthInteractor;
-import com.android.friendchat.interactor.AuthInteractorImpl;
 import com.android.friendchat.view.contract.AuthContract;
 
 /**
