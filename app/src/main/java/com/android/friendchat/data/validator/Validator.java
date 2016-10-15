@@ -15,7 +15,7 @@ public class Validator {
      * @return
      */
     public static boolean validate(String email,String password){
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email) || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             return false;
         }
 

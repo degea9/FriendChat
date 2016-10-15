@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by hp 400 on 10/4/2016.
  */
 public class BaseActivity extends AppCompatActivity {
+    private MaterialDialog mMessageDialog;
     private MaterialDialog mProgressDialog;
     protected void navigateTo(Class<?> cls){
         Intent intent = new Intent(this,cls);
@@ -30,5 +31,15 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void dissmissProgressDialog(){
        if(mProgressDialog!=null)mProgressDialog.dismiss();
+    }
+
+    protected void showMessageDialog(String message){
+        mMessageDialog =new MaterialDialog.Builder(this)
+                .theme(Theme.LIGHT)
+                .content(message)
+                .positiveText(R.string.ok)
+                .positiveColorRes(R.color.black)
+                .show();
+        mMessageDialog.show();
     }
 }

@@ -1,54 +1,41 @@
 package com.android.friendchat.view.activity;
 
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.friendchat.R;
+import com.android.friendchat.presenter.AuthPresenter;
+import com.android.friendchat.view.contract.AuthContract;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import com.android.friendchat.R;
-import com.android.friendchat.presenter.LoginPresenter;
-import com.android.friendchat.utils.LogUtil;
-import com.android.friendchat.view.contract.LoginContract;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements LoginContract {
+public class LoginActivity extends BaseActivity implements AuthContract {
     private static final String TAG = LoginActivity.class.getSimpleName();
-//    @Bind(R.id.email)
-//    EditText txtEmail;
-//    @Bind(R.id.password)
-//    EditText txtPassword;
-//    @Bind(R.id.progressBar)
-//    @Bind(R.id.fb_login_button)
-//    LoginButton fbLoginButton;
-//    LoginPresenter mPresenter;
+    @Bind(R.id.input_layout_email)
+    TextInputLayout inputLayoutEmail;
+    @Bind(R.id.input_layout_password)
+    TextInputLayout inputLayoutPassword;
+    @Bind(R.id.input_email)
+    EditText edtEmail;
+    @Bind(R.id.input_password)
+    EditText edtPassword;
+    AuthPresenter mPresenter;
     //FaceBook
     private CallbackManager mCallbackManager;
     private FirebaseAuth mAuth;
@@ -59,8 +46,9 @@ public class LoginActivity extends BaseActivity implements LoginContract {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        mPresenter = new AuthPresenter(this);
+        setupView();
 //        mAuth = FirebaseAuth.getInstance();
-//        mPresenter = new LoginPresenter(this);
 //        mCallbackManager = CallbackManager.Factory.create();
 //        fbLoginButton.setReadPermissions("email", "public_profile");
 //        fbLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
@@ -89,9 +77,43 @@ public class LoginActivity extends BaseActivity implements LoginContract {
 
     }
 
+    private void setupView() {
+        edtEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                inputLayoutEmail.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        edtPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                inputLayoutPassword.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
-        Toast.makeText(getApplicationContext(),"handleFacebookAccessToken:" + token,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "handleFacebookAccessToken:" + token, Toast.LENGTH_SHORT).show();
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
@@ -118,26 +140,34 @@ public class LoginActivity extends BaseActivity implements LoginContract {
     }
 
     @OnClick(R.id.btn_login)
-    public void login(){
-        showProgressDialog("Authenticating...");
-//        String email = txtEmail.getText().toString().trim();
-//        String password = txtPassword.getText().toString().trim();
-//        mPresenter.login(email, password);
+    public void login() {
+        showProgressDialog(getString(R.string.authenticating));
+        String email = edtEmail.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
+        mPresenter.login(email, password);
     }
 
-    public void facebookLogin(){
-    }
-
-    @Override
-    public void loginSuccess() {
-//        progressBar.setVisibility(View.GONE);
-//        navigateTo(ProfileActivity.class);
-//        Toast.makeText(this,"login success",Toast.LENGTH_LONG).show();
+    @OnClick(R.id.fb_login_button)
+    public void facebookLogin() {
     }
 
     @Override
-    public void loginFailure() {
+    public void navigateToProfile() {
+        dissmissProgressDialog();
+        navigateTo(ProfileActivity.class);
+    }
 
+    @Override
+    public void showLoginFailureMessage() {
+        dissmissProgressDialog();
+        showMessageDialog(getString(R.string.login_failure));
+    }
+
+    @Override
+    public void showValidateErrorMessage(String errMessage) {
+        dissmissProgressDialog();
+        inputLayoutEmail.setError(errMessage);
+        inputLayoutPassword.setError(errMessage);
     }
 
 
