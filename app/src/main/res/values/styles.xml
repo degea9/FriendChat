@@ -38,7 +38,20 @@
         <item name="android:textColor">@color/pink</item>
     </style>
 
+    <style name="AppTheme.Main" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimaryDark">@color/teal_900</item>
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorAccent">@color/indigo</item>
 
+        <item name="android:windowBackground">@color/white</item>
+
+        <item name="colorControlNormal">@color/iron</item>
+        <item name="colorControlActivated">@color/red</item>
+        <item name="colorControlHighlight">@color/indigo</item>
+        <item name="android:textColorHint">@color/iron</item>
+
+        <item name="colorButtonNormal">@color/pink</item>
+    </style>
 
 
 </resources>

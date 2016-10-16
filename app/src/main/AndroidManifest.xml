@@ -42,7 +42,8 @@
         <activity android:name=".view.activity.ProfileActivity" />
         <activity android:name=".view.activity.EditProfileActivity" />
         <activity android:name=".view.activity.ChatActivity" />
-        <activity android:name=".view.activity.RoomChatActivity" />
+        <activity android:name=".view.activity.RoomChatActivity"
+            android:theme="@style/AppTheme.Dark"/>
         <activity android:name=".splash.SplashActivity"
             android:theme="@style/AppTheme.Dark">
             <intent-filter>
