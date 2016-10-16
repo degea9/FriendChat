@@ -12,7 +12,7 @@ import com.google.firebase.storage.UploadTask;
 
 import com.android.friendchat.R;
 import com.android.friendchat.presenter.ChatPresenter;
-import com.android.friendchat.utils.FireBaseUtils;
+import com.android.friendchat.utils.FireBaseConst;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.adapter.MessagesAdapter;
 
@@ -86,7 +86,7 @@ public class ChatFragment extends BaseFragment {
 
     @OnClick(R.id.add_photo)
     public void sendPhotoMessage(){
-        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FireBaseUtils.STORAGE_URL);
+        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FireBaseConst.STORAGE_URL);
         pickImage();
     }
 

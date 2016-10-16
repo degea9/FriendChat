@@ -7,7 +7,7 @@ import com.android.friendchat.data.model.User;
 import com.android.friendchat.interactor.ProfileInteractor;
 import com.android.friendchat.view.contract.ProfileContract;
 
-public class ProfilePresenter extends BasePresenter {
+public class ProfilePresenter {
     ProfileInteractor mProfileInteractor;
     ProfileContract mContract;
 

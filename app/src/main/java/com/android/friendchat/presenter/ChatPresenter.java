@@ -5,7 +5,7 @@ package com.android.friendchat.presenter;
 
 import com.android.friendchat.interactor.ChatInteractor;
 
-public class ChatPresenter extends BasePresenter {
+public class ChatPresenter {
     private ChatInteractor mInteractor;
     public ChatPresenter(){
         mInteractor = new ChatInteractor(this);

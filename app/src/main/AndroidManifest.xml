@@ -27,14 +27,9 @@
         <activity
             android:name=".signin.LoginActivity"
             android:theme="@style/AppTheme.Dark">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.RoomActivity"
+            android:name=".main.RoomActivity"
             android:screenOrientation="portrait" />
 
         <!-- fb activity -->
@@ -47,7 +42,15 @@
         <activity android:name=".view.activity.ProfileActivity" />
         <activity android:name=".view.activity.EditProfileActivity" />
         <activity android:name=".view.activity.ChatActivity" />
-        <activity android:name=".view.activity.RoomChatActivity"></activity>
+        <activity android:name=".view.activity.RoomChatActivity" />
+        <activity android:name=".splash.SplashActivity"
+            android:theme="@style/AppTheme.Dark">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

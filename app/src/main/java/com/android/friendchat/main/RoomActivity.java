@@ -1,11 +1,10 @@
-package com.android.friendchat.view.activity;
+package com.android.friendchat.main;
 
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.view.adapter.RoomPagerAdapter;
 import com.android.friendchat.view.fragment.CreateRoomFragment;
 import com.android.friendchat.view.fragment.FriendFragment;
-import com.android.friendchat.view.fragment.PopularFragment;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;

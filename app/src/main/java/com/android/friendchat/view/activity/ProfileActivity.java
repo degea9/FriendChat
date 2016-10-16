@@ -15,7 +15,7 @@ import com.google.firebase.storage.UploadTask;
 
 import com.android.friendchat.R;
 import com.android.friendchat.presenter.ProfilePresenter;
-import com.android.friendchat.utils.FireBaseUtils;
+import com.android.friendchat.utils.FireBaseConst;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.custom.MLRoundedImageView;
 import com.squareup.picasso.Picasso;
@@ -87,7 +87,7 @@ public class ProfileActivity extends BaseActivity implements ProfileContract {
     @OnClick(R.id.profile_avatar)
     public void uploadImage(){
         showProgressDialog(getString(R.string.uploading));
-        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FireBaseUtils.STORAGE_URL);
+        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FireBaseConst.STORAGE_URL);
         pickImage();
     }
 

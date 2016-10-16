@@ -10,9 +10,9 @@ public interface SignUpInteractor {
 
         void signUpSuccess();
 
-        void signUpFailure();
+        void signUpFailure(String reason);
 
     }
 
-    void signUp(String email, String password, final OnFinishedListener callback);
+    void signUp(String username,String email, String password, final OnFinishedListener callback);
 }

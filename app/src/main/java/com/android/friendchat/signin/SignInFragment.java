@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.base.BaseFragment;
+import com.android.friendchat.main.RoomActivity;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.activity.ProfileActivity;
 import com.facebook.AccessToken;
@@ -145,7 +146,7 @@ public class SignInFragment extends BaseFragment implements SignInView{
     @Override
     public void navigateToProfile() {
         ((BaseActivity) getActivity()).dissmissProgressDialog();
-        ((BaseActivity) getActivity()).navigateTo(ProfileActivity.class);
+        ((BaseActivity) getActivity()).navigateTo(RoomActivity.class);
     }
 
     @Override

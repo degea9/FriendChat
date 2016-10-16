@@ -3,6 +3,8 @@
  */
 package com.android.friendchat.utils;
 
-public class FireBaseUtils {
+public class FireBaseConst {
     public static final String STORAGE_URL = "gs://friendchat-260ce.appspot.com";
+    public static final String USER_TABLE = "users";
+    public static final String USERNAME_TABLE = "usernames";
 }

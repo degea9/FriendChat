@@ -6,6 +6,6 @@ package com.android.friendchat.signup;
 
 public interface SignUpView {
     void navigateToMain();
-    void showSignUpFailureMessage();
+    void showSignUpFailureMessage(String reason);
     void showValidateErrorMessage(String errMessage);
 }

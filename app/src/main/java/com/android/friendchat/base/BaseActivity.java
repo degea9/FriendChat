@@ -26,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
                 .widgetColorRes(R.color.pink)
                 .theme(Theme.LIGHT)
                 .progress(true, 0)
+                .cancelable(false)
                 .show();
         mProgressDialog.show();
     }

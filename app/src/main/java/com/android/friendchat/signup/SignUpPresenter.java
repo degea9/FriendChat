@@ -17,8 +17,8 @@ public class SignUpPresenter implements SignUpInteractor.OnFinishedListener {
     }
 
 
-    public void signUp(String email, String password) {
-        mInteractor.signUp(email, password, this);
+    public void signUp(String username,String email, String password) {
+        mInteractor.signUp(username,email, password, this);
     }
 
 
@@ -33,7 +33,7 @@ public class SignUpPresenter implements SignUpInteractor.OnFinishedListener {
     }
 
     @Override
-    public void signUpFailure() {
-        mSignUpView.showSignUpFailureMessage();
+    public void signUpFailure(String reason) {
+        mSignUpView.showSignUpFailureMessage(reason);
     }
 }
