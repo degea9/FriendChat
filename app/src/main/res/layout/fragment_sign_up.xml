@@ -7,6 +7,24 @@
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
 
+    <!-- Email Label -->
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:errorTextAppearance="@style/ErrorText"
+        app:errorEnabled="true">
+
+        <EditText
+            android:id="@+id/input_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <!-- Email Label -->
     <android.support.design.widget.TextInputLayout
@@ -72,6 +90,6 @@
         android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="@string/link_login"
-        android:textSize="16dip" />
+        android:textSize="16sp" />
 
 </LinearLayout>

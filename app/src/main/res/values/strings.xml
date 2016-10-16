@@ -2,6 +2,7 @@
     <!--Login screen -->
     <string name="app_name">FriendChat</string>
     <string name="action_sign_in_short">Register</string>
+    <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>

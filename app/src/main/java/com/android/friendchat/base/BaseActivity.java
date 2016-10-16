@@ -17,6 +17,7 @@ public class BaseActivity extends AppCompatActivity {
     public void navigateTo(Class<?> cls){
         Intent intent = new Intent(this,cls);
         startActivity(intent);
+        finish();
     }
 
     public void showProgressDialog(String message){

@@ -1,9 +1,10 @@
-package com.android.friendchat.auth;
+package com.android.friendchat.signin;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.android.friendchat.R;
+import com.android.friendchat.signup.SignUpFragment;
 import com.android.friendchat.base.BaseActivity;
 
 public class LoginActivity extends BaseActivity {
@@ -19,7 +20,7 @@ public class LoginActivity extends BaseActivity {
     public void addLoginFragment() {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_left);
-        transaction.replace(R.id.container,new LoginFragment());
+        transaction.replace(R.id.container,new SignInFragment());
         transaction.commit();
     }
 

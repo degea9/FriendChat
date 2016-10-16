@@ -1,4 +1,4 @@
-package com.android.friendchat.auth;
+package com.android.friendchat.signup;
 
 
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.EditText;
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.base.BaseFragment;
+import com.android.friendchat.signin.LoginActivity;
 import com.facebook.login.widget.LoginButton;
 
 import butterknife.Bind;
@@ -23,7 +24,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignUpFragment extends BaseFragment implements AuthContract,AuthContract.SignUp {
+public class SignUpFragment extends BaseFragment implements SignUpView {
     private static final String TAG = SignUpFragment.class.getSimpleName();
     @Bind(R.id.input_layout_email)
     TextInputLayout inputLayoutEmail;
@@ -35,7 +36,7 @@ public class SignUpFragment extends BaseFragment implements AuthContract,AuthCon
     EditText edtPassword;
     @Bind(R.id.fb_login_button)
     LoginButton fbLoginButton;
-    AuthPresenter mPresenter;
+    SignUpPresenter mPresenter;
 
 
     public SignUpFragment() {
@@ -48,7 +49,7 @@ public class SignUpFragment extends BaseFragment implements AuthContract,AuthCon
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
-        mPresenter = new AuthPresenter(this);
+        mPresenter = new SignUpPresenter(this);
         setupView();
         return view;
     }
@@ -110,9 +111,8 @@ public class SignUpFragment extends BaseFragment implements AuthContract,AuthCon
     }
 
     @Override
-    public void navigateToFillProfile() {
+    public void navigateToMain() {
         ((BaseActivity) getActivity()).dissmissProgressDialog();
-
     }
 
     @Override

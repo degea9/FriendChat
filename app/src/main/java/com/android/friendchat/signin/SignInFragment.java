@@ -1,4 +1,4 @@
-package com.android.friendchat.auth;
+package com.android.friendchat.signin;
 
 
 import android.os.Bundle;
@@ -32,8 +32,8 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends BaseFragment implements AuthContract,AuthContract.SignIn {
-    private static final String TAG = LoginFragment.class.getSimpleName();
+public class SignInFragment extends BaseFragment implements SignInView{
+    private static final String TAG = SignInFragment.class.getSimpleName();
     @Bind(R.id.input_layout_email)
     TextInputLayout inputLayoutEmail;
     @Bind(R.id.input_layout_password)
@@ -44,11 +44,11 @@ public class LoginFragment extends BaseFragment implements AuthContract,AuthCont
     EditText edtPassword;
     @Bind(R.id.fb_login_button)
     LoginButton fbLoginButton;
-    AuthPresenter mPresenter;
+    SignInPresenter mPresenter;
     //FaceBook
     private CallbackManager mCallbackManager;
 
-    public LoginFragment() {
+    public SignInFragment() {
         // Required empty public constructor
     }
 
@@ -59,7 +59,7 @@ public class LoginFragment extends BaseFragment implements AuthContract,AuthCont
         // Inflate the layout for this fragment
         View view=  inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this,view);
-        mPresenter = new AuthPresenter(this);
+        mPresenter = new SignInPresenter(this);
         setupView();
         return view;
     }
