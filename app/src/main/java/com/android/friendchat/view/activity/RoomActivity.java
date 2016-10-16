@@ -38,7 +38,7 @@ public class RoomActivity extends BaseActivity {
     }
 
     private void setupViewPager() {
-        mAdapter = new RoomPagerAdapter(getSupportFragmentManager());
+        mAdapter = new RoomPagerAdapter(getFragmentManager());
         mAdapter.addFragment(new FriendFragment(), getString(R.string.popular));
        // mAdapter.addFragment(new VideoChatFragment(), "Video chat");
         mAdapter.addFragment(new PopularFragment(), "Room");

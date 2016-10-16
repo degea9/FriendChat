@@ -1,7 +1,6 @@
 package com.android.friendchat.view.activity;
 
 import com.android.friendchat.R;
-import com.android.friendchat.view.fragment.ChatFragment;
 import com.android.friendchat.view.fragment.RoomChatFragment;
 import com.android.friendchat.view.fragment.VideoChatFragment;
 
@@ -22,7 +21,7 @@ public class RoomChatActivity extends AppCompatActivity {
     }
 
     private void addFragment(){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        android.app.FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.chat_container, RoomChatFragment.newInstance(roomId));
         transaction.add(R.id.video_container, VideoChatFragment.newInstance(sessionId));
         transaction.commit();

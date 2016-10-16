@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.android.friendchat.R;
+import com.android.friendchat.base.BaseFragment;
 import com.android.friendchat.data.model.Room;
 import com.android.friendchat.presenter.RoomPresenter;
 
@@ -19,7 +20,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateRoomFragment extends Fragment {
+public class CreateRoomFragment extends BaseFragment {
     private static final String TAG = CreateRoomFragment.class.getSimpleName();
 
     @Bind(R.id.name)

@@ -10,4 +10,7 @@ public interface AuthInteractor {
     void loginFailure();
 
     void validateError(String errMessage);
+
+    void signUpSuccess();
+    void signUpFailure();
 }

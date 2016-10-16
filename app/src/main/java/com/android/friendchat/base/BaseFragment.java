@@ -1,6 +1,7 @@
 package com.android.friendchat.base;
 
-import android.support.v4.app.Fragment;
+
+import android.app.Fragment;
 
 /**
  * Created by hp 400 on 10/4/2016.

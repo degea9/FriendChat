@@ -6,23 +6,14 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.base.BaseFragment;
-import com.android.friendchat.utils.LogUtil;
-import com.android.friendchat.view.activity.ProfileActivity;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
 import butterknife.Bind;
@@ -32,8 +23,8 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LoginFragment extends BaseFragment implements AuthContract,AuthContract.SignIn {
-    private static final String TAG = LoginFragment.class.getSimpleName();
+public class SignUpFragment extends BaseFragment implements AuthContract,AuthContract.SignUp {
+    private static final String TAG = SignUpFragment.class.getSimpleName();
     @Bind(R.id.input_layout_email)
     TextInputLayout inputLayoutEmail;
     @Bind(R.id.input_layout_password)
@@ -45,10 +36,9 @@ public class LoginFragment extends BaseFragment implements AuthContract,AuthCont
     @Bind(R.id.fb_login_button)
     LoginButton fbLoginButton;
     AuthPresenter mPresenter;
-    //FaceBook
-    private CallbackManager mCallbackManager;
 
-    public LoginFragment() {
+
+    public SignUpFragment() {
         // Required empty public constructor
     }
 
@@ -56,9 +46,8 @@ public class LoginFragment extends BaseFragment implements AuthContract,AuthCont
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view=  inflater.inflate(R.layout.fragment_login, container, false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        ButterKnife.bind(this, view);
         mPresenter = new AuthPresenter(this);
         setupView();
         return view;
@@ -97,61 +86,20 @@ public class LoginFragment extends BaseFragment implements AuthContract,AuthCont
             }
         });
 
-        mCallbackManager = CallbackManager.Factory.create();
-        fbLoginButton.setReadPermissions("email", "public_profile");
-        fbLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                LogUtil.d(TAG, "facebook:onSuccess:" + loginResult);
-                Toast.makeText(getContext(),"facebook:onSuccess:",Toast.LENGTH_SHORT).show();
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
 
-            @Override
-            public void onCancel() {
-                LogUtil.d(TAG, "facebook:onCancel");
-                Toast.makeText(getContext(),"facebook:onCancel",Toast.LENGTH_SHORT).show();
-                // ...
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-                Log.d(TAG, "facebook:onError", error);
-                Toast.makeText(getContext(),"facebook:onError",Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
-    @OnClick(R.id.btn_login)
-    public void login() {
+    @OnClick(R.id.btn_signup)
+    public void signUp() {
         ((BaseActivity) getActivity()).showProgressDialog(getString(R.string.authenticating));
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        mPresenter.signIn(email, password);
+        mPresenter.signUp(email, password);
     }
 
-    @OnClick(R.id.link_signup)
-    public void signUp(){
-        ((LoginActivity)getActivity()).addSignUpFragment();
-    }
-
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-        Toast.makeText(getContext(), "handleFacebookAccessToken:" + token, Toast.LENGTH_SHORT).show();
-        mPresenter.signInWithFacebook(token.getToken());
-    }
-
-    @Override
-    public void navigateToProfile() {
-        ((BaseActivity) getActivity()).dissmissProgressDialog();
-        ((BaseActivity) getActivity()).navigateTo(ProfileActivity.class);
-    }
-
-    @Override
-    public void showLoginFailureMessage() {
-        ((BaseActivity) getActivity()).dissmissProgressDialog();
-        ((BaseActivity) getActivity()).showMessageDialog(getString(R.string.login_failure));
+    @OnClick(R.id.link_login)
+    public void login(){
+        ((LoginActivity)getActivity()).addLoginFragment();
     }
 
     @Override
@@ -159,5 +107,17 @@ public class LoginFragment extends BaseFragment implements AuthContract,AuthCont
         ((BaseActivity) getActivity()).dissmissProgressDialog();
         inputLayoutEmail.setError(errMessage);
         inputLayoutPassword.setError(errMessage);
+    }
+
+    @Override
+    public void navigateToFillProfile() {
+        ((BaseActivity) getActivity()).dissmissProgressDialog();
+
+    }
+
+    @Override
+    public void showSignUpFailureMessage() {
+        ((BaseActivity) getActivity()).dissmissProgressDialog();
+        ((BaseActivity) getActivity()).showMessageDialog(getString(R.string.signup_failure));
     }
 }

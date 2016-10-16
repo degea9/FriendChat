@@ -1,6 +1,6 @@
 package com.android.friendchat.view.activity;
 
-import android.support.v4.app.FragmentTransaction;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.android.friendchat.R;
@@ -19,7 +19,7 @@ public class ChatActivity extends BaseActivity {
     }
 
     private void addFragment(){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.container,ChatFragment.newInstance(toId));
         transaction.commit();
     }

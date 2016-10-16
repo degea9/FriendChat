@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingLeft="24dp"
     android:paddingRight="24dp">
+
 
     <!-- Email Label -->
     <android.support.design.widget.TextInputLayout
@@ -21,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 
     <!-- Password Label -->
@@ -39,17 +41,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
+    <!-- Signup Button -->
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_signup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="24dp"
         android:padding="12dp"
-        android:text="@string/login" />
+        android:text="@string/create_account" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login_button"
@@ -59,15 +62,16 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:paddingBottom="8sp"
-        android:paddingTop="8sp" />
+        android:paddingTop="8sp"
+        />
 
     <TextView
-        android:id="@+id/link_signup"
+        android:id="@+id/link_login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="@string/link_signup"
-        android:textSize="16sp" />
+        android:text="@string/link_login"
+        android:textSize="16dip" />
 
 </LinearLayout>

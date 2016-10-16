@@ -2,6 +2,7 @@ package com.android.friendchat.view.fragment;
 
 
 import com.android.friendchat.R;
+import com.android.friendchat.base.BaseFragment;
 import com.android.friendchat.data.api.ApiClient;
 import com.android.friendchat.data.api.SessionJson;
 import com.android.friendchat.utils.LogUtil;
@@ -37,7 +38,7 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VideoChatFragment extends Fragment implements Session.SessionListener, PublisherKit.PublisherListener, SubscriberKit.SubscriberListener {
+public class VideoChatFragment extends BaseFragment implements Session.SessionListener, PublisherKit.PublisherListener, SubscriberKit.SubscriberListener {
     private static final String TAG = VideoChatFragment.class.getSimpleName();
     private Session mSession;
     private Publisher mPublisher;

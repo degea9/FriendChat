@@ -9,7 +9,11 @@
     </string>
     <string name="authenticating">Authenticating...</string>
     <string name="login_failure">Login failure.Please recheck your email and password.</string>
+    <string name="signup_failure">Sign up failure.Account already exist!</string>
     <string name="ok">OK</string>
+    <string name="link_signup">No account yet? Create one</string>
+    <string name="link_login">Already a member? Login</string>
+    <string name="create_account">Create Account</string>
 
     <string name="change_email">Change Email</string>
     <string name="change_password">Change Password</string>

@@ -33,6 +33,11 @@
     </style>
 
 
+    <!--Error label text style-->
+    <style name="ErrorText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/pink</item>
+    </style>
+
 
 
 
