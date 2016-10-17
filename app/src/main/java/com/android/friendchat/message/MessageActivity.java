@@ -1,13 +1,12 @@
-package com.android.friendchat.view.activity;
+package com.android.friendchat.message;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
-import com.android.friendchat.view.fragment.ChatFragment;
 
-public class ChatActivity extends BaseActivity {
+public class MessageActivity extends BaseActivity {
 
     private String toId;
     @Override
@@ -20,7 +19,7 @@ public class ChatActivity extends BaseActivity {
 
     private void addFragment(){
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.container,ChatFragment.newInstance(toId));
+        transaction.add(R.id.container, MessageFragment.newInstance(toId));
         transaction.commit();
     }
 }

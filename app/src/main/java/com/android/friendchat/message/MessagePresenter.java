@@ -1,14 +1,12 @@
 /**
  * Created by tuandang on 10/9/2016.
  */
-package com.android.friendchat.presenter;
+package com.android.friendchat.message;
 
-import com.android.friendchat.interactor.ChatInteractor;
-
-public class ChatPresenter {
-    private ChatInteractor mInteractor;
-    public ChatPresenter(){
-        mInteractor = new ChatInteractor(this);
+public class MessagePresenter {
+    private MessageInteractor mInteractor;
+    public MessagePresenter(){
+        mInteractor = new MessageInteractor(this);
     }
     public void senTextMessage(String message,String toId){
         mInteractor.senTextMessage(message,toId);

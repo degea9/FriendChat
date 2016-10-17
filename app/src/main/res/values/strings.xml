@@ -60,4 +60,7 @@
     <string name="edit">Edit</string>
     <string name="send">Send</string>
     <string name="room_name">Name of the room</string>
+    
+    <!--chat screen -->
+    <string name="chat_type_hint">Type your message...</string>
 </resources>

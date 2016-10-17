@@ -27,7 +27,7 @@ public class RoomsAdapter extends FirebaseRecyclerAdapter<Room, RoomsAdapter.Roo
 
     public RoomsAdapter(Context context, DatabaseReference ref) {
         super(Room.class, R.layout.item_room, RoomsAdapter.RoomsViewHolder.class, ref);
-        LogUtil.d(TAG, "FriendsAdapter() ");
+        LogUtil.d(TAG, "ContactsAdapter() ");
         mContext = context;
     }
 

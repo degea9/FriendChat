@@ -38,4 +38,6 @@
     <color name="indigo">#3F51B5</color>
     <color name="teal">#009688</color>
     <color name="teal_900">#004D40</color>
+    <color name="purple_chat">#373351</color>
+    <color name="purple_type_hint">#8f8497</color>
 </resources>

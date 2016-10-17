@@ -1,46 +1,54 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.android.friendchat.view.fragment.ChatFragment">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".message.MessageFragment"
+                android:background="@color/purple_chat"
+        >
 
-   <android.support.v7.widget.RecyclerView
-       android:id="@+id/rv_message"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:layout_above="@+id/rl_send"
-       >
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_message"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rl_send"
+            >
 
-   </android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>
 
     <RelativeLayout
-        android:id="@+id/rl_send"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:padding="2dp">
-        <Button
-            android:id="@+id/btn_send"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
+            android:id="@+id/rl_send"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            style="?android:attr/borderlessButtonStyle"
-            android:text="@string/send"/>
+            android:padding="2dp">
         <ImageView
-                android:id="@+id/add_photo"
+                android:id="@+id/send_message"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_chat_send"
+                android:layout_marginRight="15dp"
+                />
+        <ImageView
+                android:id="@+id/attach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/ic_add_a_photo_black_36dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_chat_attach"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
                 />
         <EditText
-            android:id="@+id/edt_chat_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/btn_send"
-            android:layout_toRightOf="@+id/add_photo"
-            />
+                android:id="@+id/edt_chat_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/send_message"
+                android:layout_toRightOf="@+id/attach"
+                android:hint="@string/chat_type_hint"
+                android:background="@android:color/transparent"
+                android:textColorHint="@color/purple_type_hint"
+                />
     </RelativeLayout>
 </RelativeLayout>

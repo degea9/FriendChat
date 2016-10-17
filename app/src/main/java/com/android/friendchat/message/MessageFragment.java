@@ -1,7 +1,6 @@
-package com.android.friendchat.view.fragment;
+package com.android.friendchat.message;
 
 
-import com.android.friendchat.base.BaseFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -11,10 +10,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import com.android.friendchat.R;
-import com.android.friendchat.presenter.ChatPresenter;
+import com.android.friendchat.base.BaseFragment;
 import com.android.friendchat.utils.FireBaseConst;
 import com.android.friendchat.utils.LogUtil;
-import com.android.friendchat.view.adapter.MessagesAdapter;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -34,11 +32,11 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChatFragment extends BaseFragment {
+public class MessageFragment extends BaseFragment {
 
-    private static final String TAG = ChatFragment.class.getSimpleName();
+    private static final String TAG = MessageFragment.class.getSimpleName();
     private static final int REQUEST_GALLERY_CODE = 1000;
-    private ChatPresenter mPresenter;
+    private MessagePresenter mPresenter;
     @Bind(R.id.edt_chat_content)
     EditText edtChatContent;
     @Bind(R.id.rv_message)
@@ -46,13 +44,13 @@ public class ChatFragment extends BaseFragment {
     private DatabaseReference mUserMessageRef;
     private String toId;
     StorageReference mStorageRef;
-    public ChatFragment() {
-        mPresenter = new ChatPresenter();
-        mUserMessageRef = FirebaseDatabase.getInstance().getReference().child("user-message");
+    public MessageFragment() {
+        mPresenter = new MessagePresenter();
+        mUserMessageRef = FirebaseDatabase.getInstance().getReference().child(FireBaseConst.USER_MESSAGE_TABLE);
     }
 
-    public static ChatFragment newInstance(String toId){
-        ChatFragment fragment = new ChatFragment();
+    public static MessageFragment newInstance(String toId){
+        MessageFragment fragment = new MessageFragment();
         Bundle bundle = new Bundle();
         bundle.putString("toId",toId);
         fragment.setArguments(bundle);
@@ -78,13 +76,13 @@ public class ChatFragment extends BaseFragment {
         rvMessage.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    @OnClick(R.id.btn_send)
+    @OnClick(R.id.send_message)
     public void sendTextMessage(){
         mPresenter.senTextMessage(edtChatContent.getText().toString(), toId);
         edtChatContent.setText("");
     }
 
-    @OnClick(R.id.add_photo)
+    @OnClick(R.id.attach)
     public void sendPhotoMessage(){
         mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FireBaseConst.STORAGE_URL);
         pickImage();

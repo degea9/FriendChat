@@ -30,13 +30,13 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textColor="@color/indigo"/>
         <TextView
                 android:id="@+id/user_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@color/black"/>
 
     </LinearLayout>

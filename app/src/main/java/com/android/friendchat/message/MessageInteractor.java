@@ -1,10 +1,12 @@
 /**
  * Created by tuandang on 10/9/2016.
  */
-package com.android.friendchat.interactor;
+package com.android.friendchat.message;
 
 import com.android.friendchat.data.model.ChatMessage;
-import com.android.friendchat.presenter.ChatPresenter;
+import com.android.friendchat.message.MessagePresenter;
+import com.android.friendchat.utils.FireBaseConst;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -13,11 +15,11 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChatInteractor {
+public class MessageInteractor {
     private DatabaseReference mRootRef;
-    private ChatPresenter mPresenter;
+    private MessagePresenter mPresenter;
 
-    public ChatInteractor(ChatPresenter presenter) {
+    public MessageInteractor(MessagePresenter presenter) {
         mRootRef = FirebaseDatabase.getInstance().getReference();
         mPresenter = presenter;
     }
@@ -31,9 +33,9 @@ public class ChatInteractor {
         textMessage.setTimestamp(Calendar.getInstance().getTimeInMillis());
         String messageKey = mRootRef.child("message").push().getKey();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/message/" + messageKey, textMessage.textToMap());
-        childUpdates.put("/user-message/" + uid + "/" + toId + "/" + messageKey, 1);
-        childUpdates.put("/user-message/" + toId + "/" + uid + "/" + messageKey, 1);
+        childUpdates.put("/"+ FireBaseConst.MESSAGE_TABLE+"/" + messageKey, textMessage.textToMap());
+        childUpdates.put("/"+ FireBaseConst.USER_MESSAGE_TABLE+"/" + uid + "/" + toId + "/" + messageKey, 1);
+        childUpdates.put("/"+FireBaseConst.USER_MESSAGE_TABLE+"/" + toId + "/" + uid + "/" + messageKey, 1);
         mRootRef.updateChildren(childUpdates);
     }
 
@@ -46,9 +48,9 @@ public class ChatInteractor {
         textMessage.setTimestamp(Calendar.getInstance().getTimeInMillis());
         String messageKey = mRootRef.child("message").push().getKey();
         Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/message/" + messageKey, textMessage.photoToMap());
-        childUpdates.put("/user-message/" + uid + "/" + toId + "/" + messageKey, 1);
-        childUpdates.put("/user-message/" + toId + "/" + uid + "/" + messageKey, 1);
+        childUpdates.put("/"+ FireBaseConst.MESSAGE_TABLE+"/"  + messageKey, textMessage.photoToMap());
+        childUpdates.put("/"+ FireBaseConst.USER_MESSAGE_TABLE+"/" + uid + "/" + toId + "/" + messageKey, 1);
+        childUpdates.put("/"+ FireBaseConst.USER_MESSAGE_TABLE+"/" + toId + "/" + uid + "/" + messageKey, 1);
         mRootRef.updateChildren(childUpdates);
     }
 }
