@@ -1,4 +1,4 @@
-package com.android.friendchat.view.fragment;
+package com.android.friendchat.main.contacts;
 
 
 import android.content.Intent;
@@ -25,13 +25,13 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FriendFragment extends BaseFragment {
-    private static final String TAG = FriendFragment.class.getSimpleName();
+public class ContactsFragment extends BaseFragment {
+    private static final String TAG = ContactsFragment.class.getSimpleName();
 
     @Bind(R.id.recycler_view)
     RecyclerView rvFriends;
     private DatabaseReference mUserRef;
-    public FriendFragment() {
+    public ContactsFragment() {
         mUserRef = FirebaseDatabase.getInstance().getReference().child("user");
     }
 

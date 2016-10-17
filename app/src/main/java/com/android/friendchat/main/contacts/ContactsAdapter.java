@@ -1,7 +1,7 @@
 /**
  * Created by tuandang on 10/8/2016.
  */
-package com.android.friendchat.view.adapter;
+package com.android.friendchat.main.contacts;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -16,14 +16,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.squareup.picasso.Picasso;
 
-public class FriendsAdapter extends FirebaseRecyclerAdapter<User, FriendsAdapter.FriendsViewHolder>  {
+public class ContactsAdapter extends FirebaseRecyclerAdapter<User, ContactsAdapter.FriendsViewHolder>  {
 
-    private static final String TAG = FriendsAdapter.class.getSimpleName();
+    private static final String TAG = ContactsAdapter.class.getSimpleName();
     private Context mContext;
 
-    public FriendsAdapter(Context context, DatabaseReference ref) {
-        super(User.class, R.layout.item_friend, FriendsAdapter.FriendsViewHolder.class, ref);
-        LogUtil.d(TAG, "FriendsAdapter() ");
+    public ContactsAdapter(Context context, DatabaseReference ref) {
+        super(User.class, R.layout.item_friend, ContactsAdapter.FriendsViewHolder.class, ref);
+        LogUtil.d(TAG, "ContactsAdapter() ");
         mContext = context;
     }
 
