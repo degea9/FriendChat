@@ -20,20 +20,20 @@ public class SplashActivity extends BaseActivity implements SplashView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        //mPresenter = new SplashPresenter(this);
-        testPresense();
+        mPresenter = new SplashPresenter(this);
+        //testPresense();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        //mPresenter.onStart();
+        mPresenter.onStart();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        //mPresenter.onStop();
+        mPresenter.onStop();
 
     }
 
