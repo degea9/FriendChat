@@ -2,6 +2,7 @@ package com.android.friendchat.main;
 
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
+import com.android.friendchat.main.room.RoomListFragment;
 import com.android.friendchat.view.adapter.RoomPagerAdapter;
 import com.android.friendchat.view.fragment.CreateRoomFragment;
 import com.android.friendchat.main.contacts.ContactsFragment;
@@ -14,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RoomActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
     @Bind(R.id.viewpager)
@@ -40,7 +41,7 @@ public class RoomActivity extends BaseActivity {
         mAdapter = new RoomPagerAdapter(getFragmentManager());
         mAdapter.addFragment(new ContactsFragment(), getString(R.string.popular));
        // mAdapter.addFragment(new VideoChatFragment(), "Video chat");
-        mAdapter.addFragment(new PopularFragment(), "Room");
+        mAdapter.addFragment(new RoomListFragment(), "Room");
         //mAdapter.addFragment(new RoomChatFragment(), "TestRoomChat");
         mAdapter.addFragment(new CreateRoomFragment(), "createRoomChat");
         mPager.setAdapter(mAdapter);

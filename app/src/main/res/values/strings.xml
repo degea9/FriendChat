@@ -59,8 +59,13 @@
     <string name="save">Save</string>
     <string name="edit">Edit</string>
     <string name="send">Send</string>
-    <string name="room_name">Name of the room</string>
-    
+
     <!--chat screen -->
     <string name="chat_type_hint">Type your message...</string>
+    <string name="title_activity_create_room">New room</string>
+
+    <!--end chat screen -->
+    <!--create room screen -->
+    <string name="create">Create</string>
+    <string name="room_name">Room name</string>
 </resources>

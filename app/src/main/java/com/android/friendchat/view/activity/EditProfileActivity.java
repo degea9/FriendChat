@@ -3,7 +3,7 @@ package com.android.friendchat.view.activity;
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.data.model.User;
-import com.android.friendchat.main.RoomActivity;
+import com.android.friendchat.main.MainActivity;
 import com.android.friendchat.presenter.ProfilePresenter;
 import com.android.friendchat.utils.CommonUtils;
 import com.android.friendchat.view.adapter.GenderAdapter;
@@ -80,7 +80,7 @@ public class EditProfileActivity extends BaseActivity implements DatePickerListe
             mUser.setFirstName(firstName);
             mUser.setLastName(lastName);
             mPresenter.saveProfile(mUser);
-            navigateTo(RoomActivity.class);
+            navigateTo(MainActivity.class);
             return true;
         }
 

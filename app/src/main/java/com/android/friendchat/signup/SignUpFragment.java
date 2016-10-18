@@ -14,7 +14,7 @@ import android.widget.EditText;
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.base.BaseFragment;
-import com.android.friendchat.main.RoomActivity;
+import com.android.friendchat.main.MainActivity;
 import com.android.friendchat.signin.LoginActivity;
 import com.facebook.login.widget.LoginButton;
 
@@ -135,7 +135,7 @@ public class SignUpFragment extends BaseFragment implements SignUpView {
     @Override
     public void navigateToMain() {
         ((BaseActivity) getActivity()).dissmissProgressDialog();
-        ((BaseActivity) getActivity()).navigateTo(RoomActivity.class);
+        ((BaseActivity) getActivity()).navigateTo(MainActivity.class);
     }
 
     @Override

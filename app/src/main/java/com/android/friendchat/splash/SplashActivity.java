@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
-import com.android.friendchat.main.RoomActivity;
+import com.android.friendchat.main.MainActivity;
 import com.android.friendchat.signin.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,6 +79,6 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
     @Override
     public void navigateToMain() {
-        navigateTo(RoomActivity.class);
+        navigateTo(MainActivity.class);
     }
 }
