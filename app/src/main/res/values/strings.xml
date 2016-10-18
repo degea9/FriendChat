@@ -67,5 +67,8 @@
     <!--end chat screen -->
     <!--create room screen -->
     <string name="create">Create</string>
+    <string name="creating_room">Creating room...</string>
     <string name="room_name">Room name</string>
+    <string name="create_failure">An unexpected error has occurred.Please try again.</string>
+    <!--end create room screen -->
 </resources>

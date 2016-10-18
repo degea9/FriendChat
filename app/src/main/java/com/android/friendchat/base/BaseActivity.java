@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by hp 400 on 10/4/2016.
  */
 public class BaseActivity extends AppCompatActivity {
+    protected static final int REQUEST_GALLERY_CODE = 1000;
     private MaterialDialog mMessageDialog;
     private MaterialDialog mProgressDialog;
     public void navigateTo(Class<?> cls){
@@ -43,6 +44,12 @@ public class BaseActivity extends AppCompatActivity {
                 .positiveColorRes(R.color.black)
                 .show();
         mMessageDialog.show();
+    }
+
+    protected void pickImage(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, REQUEST_GALLERY_CODE);
     }
 
     @Override

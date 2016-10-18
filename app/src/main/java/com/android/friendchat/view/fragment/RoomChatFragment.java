@@ -10,7 +10,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import com.android.friendchat.R;
-import com.android.friendchat.presenter.RoomPresenter;
+import com.android.friendchat.main.room.CreateRoomPresenter;
 import com.android.friendchat.utils.FireBaseConst;
 import com.android.friendchat.utils.LogUtil;
 import com.android.friendchat.view.adapter.RoomMessagesAdapter;
@@ -36,7 +36,7 @@ import butterknife.OnClick;
 public class RoomChatFragment extends BaseFragment {
     private static final String TAG = RoomChatFragment.class.getSimpleName();
     private static final int REQUEST_GALLERY_CODE = 1000;
-    private RoomPresenter mPresenter;
+    private CreateRoomPresenter mPresenter;
 
     @Bind(R.id.edt_chat_content)
     EditText edtChatContent;
@@ -46,8 +46,8 @@ public class RoomChatFragment extends BaseFragment {
     StorageReference mStorageRef;
     private DatabaseReference mRoomMessageRef;
     public RoomChatFragment() {
-        mPresenter = new RoomPresenter();
-        mRoomMessageRef = FirebaseDatabase.getInstance().getReference().child("room-message");
+        //mPresenter = new CreateRoomPresenter();
+        //mRoomMessageRef = FirebaseDatabase.getInstance().getReference().child("room-message");
 
     }
 

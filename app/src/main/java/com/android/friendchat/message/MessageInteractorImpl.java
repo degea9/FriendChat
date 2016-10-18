@@ -64,7 +64,7 @@ public class MessageInteractorImpl implements MessageInteractor {
         DatabaseReference mUserMessageRef = FirebaseDatabase.getInstance().getReference().child(FireBaseConst.USER_MESSAGE_TABLE);
         final DatabaseReference mMessageRef = FirebaseDatabase.getInstance().getReference().child(FireBaseConst.MESSAGE_TABLE);
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        mUserMessageRef.child(uid).child(toId).addChildEventListener(new ChildEventListener() {
+        mUserMessageRef.child(uid).child(toId).limitToLast(5).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 LogUtil.d(TAG, "onChildAdded");

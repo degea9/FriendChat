@@ -3,13 +3,12 @@ package com.android.friendchat.interactor;
 import com.android.friendchat.data.api.ApiClient;
 import com.android.friendchat.data.api.SessionJson;
 import com.android.friendchat.data.model.Room;
-import com.android.friendchat.utils.LogUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import com.android.friendchat.data.model.ChatMessage;
-import com.android.friendchat.presenter.RoomPresenter;
+import com.android.friendchat.main.room.CreateRoomPresenter;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -24,9 +23,9 @@ import retrofit2.Response;
  */
 public class RoomInteractor {
     private DatabaseReference mRootRef;
-    private RoomPresenter mPresenter;
+    private CreateRoomPresenter mPresenter;
 
-    public RoomInteractor(RoomPresenter presenter) {
+    public RoomInteractor(CreateRoomPresenter presenter) {
         mRootRef = FirebaseDatabase.getInstance().getReference();
         mPresenter = presenter;
     }

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseFragment;
 import com.android.friendchat.data.model.Room;
-import com.android.friendchat.presenter.RoomPresenter;
+import com.android.friendchat.main.room.CreateRoomPresenter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,11 +26,11 @@ public class CreateRoomFragment extends BaseFragment {
     @Bind(R.id.name)
     EditText edtName;
 
-    private RoomPresenter roomPresenter;
+    private CreateRoomPresenter roomPresenter;
     Room mRoom = new Room();
 
     public CreateRoomFragment() {
-        roomPresenter = new RoomPresenter();
+       // roomPresenter = new CreateRoomPresenter();
     }
 
 
@@ -51,7 +51,7 @@ public class CreateRoomFragment extends BaseFragment {
     @OnClick(R.id.btnCreat)
     public void createRoom(){
         mRoom.setName(edtName.getText().toString().trim());
-        roomPresenter.createRoom(mRoom);
+        //roomPresenter.createRoom(mRoom);
     }
 
 }

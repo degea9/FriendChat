@@ -91,11 +91,11 @@ public class ProfileActivity extends BaseActivity implements ProfileContract {
         pickImage();
     }
 
-    private void pickImage(){
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent,REQUEST_GALLERY_CODE);
-    }
+//    private void pickImage(){
+//        Intent intent = new Intent(Intent.ACTION_PICK);
+//        intent.setType("image/*");
+//        startActivityForResult(intent,REQUEST_GALLERY_CODE);
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
