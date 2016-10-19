@@ -68,6 +68,21 @@ public class MessageInteractorImpl implements MessageInteractor {
         mRootRef.updateChildren(childUpdates);
     }
 
+    private void senVideoMessage(String url, String toId) {
+        ChatMessage textMessage = new ChatMessage();
+        textMessage.setVideoUrl(url);
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        textMessage.setFromId(uid);
+        textMessage.setToId(toId);
+        textMessage.setTimestamp(Calendar.getInstance().getTimeInMillis());
+        String messageKey = mRootRef.child(FireBaseConst.MESSAGE_TABLE).push().getKey();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/" + FireBaseConst.MESSAGE_TABLE + "/" + messageKey, textMessage.videoToMap());
+        childUpdates.put("/" + FireBaseConst.USER_MESSAGE_TABLE + "/" + uid + "/" + toId + "/" + messageKey, 1);
+        childUpdates.put("/" + FireBaseConst.USER_MESSAGE_TABLE + "/" + toId + "/" + uid + "/" + messageKey, 1);
+        mRootRef.updateChildren(childUpdates);
+    }
+
     @Override
     public void uploadPhoto(Uri uri, final String toId) {
         try {
@@ -86,6 +101,20 @@ public class MessageInteractorImpl implements MessageInteractor {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void uploadVideo(Uri uri,final String toId) {
+        mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FireBaseConst.STORAGE_URL);
+        StorageReference filePath = mStorageRef.child(FireBaseConst.PHOTOS_FOLDER).child(uri.getLastPathSegment());
+        filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                //mPresenter.senPhotoMessage(taskSnapshot.getDownloadUrl().toString(),roomId);
+                LogUtil.d(TAG, "upload success " + taskSnapshot.getDownloadUrl().toString());
+                senVideoMessage(taskSnapshot.getDownloadUrl().toString(), toId);
+            }
+        });
     }
 
     @Override

@@ -98,7 +98,8 @@ public class MessageFragment extends BaseFragment implements MessagesView {
         mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(FireBaseConst.STORAGE_URL);
         //pickImage();
        // pickImageFromCamera();
-        dispatchTakePictureIntent();
+        //dispatchTakePictureIntent();
+        dispatchTakeVideoIntent();
     }
 
     private File createImageFile() throws IOException {
@@ -159,6 +160,9 @@ public class MessageFragment extends BaseFragment implements MessagesView {
 //                Bundle extras = data.getExtras();
 //                Bitmap imageBitmap = (Bitmap) extras.get("data");
 //                mPresenter.sen
+            } else if (requestCode == REQUEST_VIDEO_CAPTURE ) {
+                Uri videoUri = data.getData();
+                mPresenter.senVideoMessage(videoUri, toId);
             }
         }
     }

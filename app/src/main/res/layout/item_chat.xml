@@ -43,14 +43,14 @@
                 android:layout_gravity="center"
                 />
 
+            <com.malmstein.fenster.view.FensterVideoView
+                    android:id="@+id/video"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:keepScreenOn="true"
+                    android:fitsSystemWindows="true" />
+
     </LinearLayout>
 
-
-    <!--<VideoView-->
-    <!--android:id="@+id/video"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:gravity="right"-->
-    />
 
 </LinearLayout>

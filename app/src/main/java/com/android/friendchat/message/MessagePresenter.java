@@ -19,7 +19,11 @@ public class MessagePresenter implements MessageInteractor.OnFinishedListener {
     }
 
     public void senPhotoMessage(Uri uri,String toId){
-        mInteractor.uploadPhoto(uri,toId);
+        mInteractor.uploadPhoto(uri, toId);
+    }
+
+    public void senVideoMessage(Uri uri,String toId){
+        mInteractor.uploadVideo(uri,toId);
     }
 
     public void getMessages(String toId){

@@ -13,5 +13,6 @@ public interface MessageInteractor {
     }
 
     void uploadPhoto(Uri uri,String toId);
+    void uploadVideo(Uri uri,String toId);
     void getMessages(String toId, OnFinishedListener callback);
 }

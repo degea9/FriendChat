@@ -5,9 +5,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.android.friendchat.R;
 import com.android.friendchat.data.model.ChatMessage;
 import com.android.friendchat.utils.LogUtil;
+import com.malmstein.fenster.view.FensterVideoView;
 import com.squareup.picasso.Picasso;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import java.util.List;
 
@@ -40,6 +43,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         TextView date;
         @Bind(R.id.photo)
         ImageView photo;
+        @Bind(R.id.video)
+        FensterVideoView video;
 
         public MessagesViewHolder(View view) {
             super(view);
@@ -98,11 +103,22 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         viewHolder.date.setText(message.getDate());
         if (message.getImageUrl() != null) {
             viewHolder.message.setVisibility(View.GONE);
+            viewHolder.video.setVisibility(View.GONE);
             viewHolder.photo.setVisibility(View.VISIBLE);
             Picasso.with(mContext).load(message.getImageUrl()).resize(500,500).centerInside().
                     into(viewHolder.photo);
-        } else {
+        } else if(message.getVideoUrl()!=null){
+            LogUtil.d(TAG, "onBindViewHolder video url "+message.getVideoUrl());
+            viewHolder.message.setVisibility(View.GONE);
             viewHolder.photo.setVisibility(View.GONE);
+            viewHolder.video.setVisibility(View.VISIBLE);
+            viewHolder.video.setVideo(message.getVideoUrl());
+            viewHolder.video.start();
+        }
+
+        else {
+            viewHolder.photo.setVisibility(View.GONE);
+            viewHolder.video.setVisibility(View.GONE);
             viewHolder.message.setVisibility(View.VISIBLE);
             viewHolder.message.setText(message.getMessage());
         }
