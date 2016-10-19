@@ -63,7 +63,14 @@ public class ContactsAdapter extends FirebaseRecyclerAdapter<User, ContactsAdapt
             viewHolder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onClick1(position);
+                    mListener.setId(getRef(position).getKey());
+                }
+            });
+
+            viewHolder.call.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.call(getRef(position).getKey());
                 }
             });
         }
@@ -73,9 +80,9 @@ public class ContactsAdapter extends FirebaseRecyclerAdapter<User, ContactsAdapt
         mListener = listener;
     }
 
-    public void onClick1(int position) {
-        mListener.setId(getRef(position).getKey());
-    }
+//    public void onClick1(int position) {
+//        mListener.setId(getRef(position).getKey());
+//    }
 
     static class ContactsViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.username)
@@ -84,6 +91,8 @@ public class ContactsAdapter extends FirebaseRecyclerAdapter<User, ContactsAdapt
         TextView status;
         @Bind(R.id.user_thumbnail)
         ImageView thumbnail;
+        @Bind(R.id.call)
+        ImageView call;
         View mView;
 
         public ContactsViewHolder(View view) {
@@ -97,5 +106,6 @@ public class ContactsAdapter extends FirebaseRecyclerAdapter<User, ContactsAdapt
 
     public interface ContactsClickListener {
         void setId(String toId);
+        void call(String receiverId);
     }
 }

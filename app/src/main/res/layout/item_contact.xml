@@ -1,45 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:padding="10dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
 
-    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/rl_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/user_thumbnail"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center_vertical"
-                />
+            android:id="@+id/user_thumbnail"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical" />
+
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/user_thumbnail"
-                android:layout_marginTop="36dp"
-                android:layout_marginLeft="-14dp"
-                android:src="@drawable/ic_status_online"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-14dp"
+            android:layout_marginTop="36dp"
+            android:layout_toRightOf="@+id/user_thumbnail"
+            android:src="@drawable/ic_status_online" />
 
     </RelativeLayout>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/rl_user"
+        android:layout_toLeftOf="@+id/call"
+        android:orientation="vertical">
+
         <TextView
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:textColor="@color/indigo"/>
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/indigo"
+            android:textSize="24sp" />
+
         <TextView
-                android:id="@+id/user_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/black"/>
+            android:id="@+id/user_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_call"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"/>
 
-</LinearLayout>
+</RelativeLayout>

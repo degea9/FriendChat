@@ -1,6 +1,7 @@
 package com.android.friendchat.main.contacts;
 
 
+import com.android.friendchat.call.CallActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -58,6 +59,12 @@ public class ContactsFragment extends BaseFragment {
             Intent intent = new Intent(getActivity(), MessageActivity.class);
             intent.putExtra("toId",toId);
             getActivity().startActivity(intent);
+        }
+
+        @Override
+        public void call(String receiverId) {
+            Intent intent = new Intent(getActivity(), CallActivity.class);
+            startActivity(intent);
         }
     };
 }
