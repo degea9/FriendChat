@@ -5,6 +5,8 @@ package com.android.friendchat.message;
 
 import com.android.friendchat.data.model.ChatMessage;
 
+import android.net.Uri;
+
 public class MessagePresenter implements MessageInteractor.OnFinishedListener {
     private MessageInteractorImpl mInteractor;
     private MessagesView mView;
@@ -16,16 +18,18 @@ public class MessagePresenter implements MessageInteractor.OnFinishedListener {
         mInteractor.senTextMessage(message, toId);
     }
 
-    public void senPhotoMessage(String url,String toId){
-        mInteractor.senPhotoMessage(url, toId);
+    public void senPhotoMessage(Uri uri,String toId){
+        mInteractor.uploadPhoto(uri,toId);
     }
 
     public void getMessages(String toId){
-        mInteractor.getMessages(toId,this);
+        mInteractor.getMessages(toId, this);
     }
 
     @Override
     public void retrieveMessage(ChatMessage message) {
         mView.renderMessage(message);
     }
+
+
 }

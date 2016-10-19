@@ -97,12 +97,22 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
         viewHolder.date.setText(message.getDate());
         if (message.getImageUrl() != null) {
-            Picasso.with(mContext).load(message.getImageUrl()).resize(100, 100).into(viewHolder.photo);
+            Picasso.with(mContext).load(message.getImageUrl()).resize(500,500).centerInside().
+            into(viewHolder.photo);
             viewHolder.message.setVisibility(View.INVISIBLE);
         } else {
             viewHolder.message.setText(message.getMessage());
         }
 
+    }
+
+    /**
+     * add message
+     * @param message: new incoming message
+     */
+    public void addMessage(ChatMessage message){
+        mMessages.add(message);
+        notifyItemInserted(mMessages.size() - 1);
     }
 
 
