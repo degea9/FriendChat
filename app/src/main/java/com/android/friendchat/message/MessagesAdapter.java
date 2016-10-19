@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.android.friendchat.R;
 import com.android.friendchat.data.model.ChatMessage;
 import com.android.friendchat.utils.LogUtil;
+import com.malmstein.fenster.controller.MediaFensterPlayerController;
 import com.malmstein.fenster.view.FensterVideoView;
 import com.squareup.picasso.Picasso;
 
@@ -15,6 +16,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,8 +45,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         TextView date;
         @Bind(R.id.photo)
         ImageView photo;
+        @Bind(R.id.frame_container)
+        FrameLayout mFrameLayout;
         @Bind(R.id.video)
         FensterVideoView video;
+        @Bind(R.id.play_video_controller)
+        MediaFensterPlayerController playerController;
 
         public MessagesViewHolder(View view) {
             super(view);
@@ -103,22 +109,25 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         viewHolder.date.setText(message.getDate());
         if (message.getImageUrl() != null) {
             viewHolder.message.setVisibility(View.GONE);
-            viewHolder.video.setVisibility(View.GONE);
+            viewHolder.mFrameLayout.setVisibility(View.GONE);
             viewHolder.photo.setVisibility(View.VISIBLE);
             Picasso.with(mContext).load(message.getImageUrl()).resize(500,500).centerInside().
                     into(viewHolder.photo);
         } else if(message.getVideoUrl()!=null){
-            LogUtil.d(TAG, "onBindViewHolder video url "+message.getVideoUrl());
+            LogUtil.d(TAG, "onBindViewHolder video url " + message.getVideoUrl());
             viewHolder.message.setVisibility(View.GONE);
             viewHolder.photo.setVisibility(View.GONE);
-            viewHolder.video.setVisibility(View.VISIBLE);
+            viewHolder.mFrameLayout.setVisibility(View.VISIBLE);
             viewHolder.video.setVideo(message.getVideoUrl());
+            viewHolder.video.setMediaController(viewHolder.playerController);
+            viewHolder.video.setVideo(message.getVideoUrl(),
+                    MediaFensterPlayerController.DEFAULT_VIDEO_START);
             viewHolder.video.start();
         }
 
         else {
             viewHolder.photo.setVisibility(View.GONE);
-            viewHolder.video.setVisibility(View.GONE);
+            viewHolder.mFrameLayout.setVisibility(View.GONE);
             viewHolder.message.setVisibility(View.VISIBLE);
             viewHolder.message.setText(message.getMessage());
         }

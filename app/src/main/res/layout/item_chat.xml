@@ -43,12 +43,27 @@
                 android:layout_gravity="center"
                 />
 
-            <com.malmstein.fenster.view.FensterVideoView
-                    android:id="@+id/video"
-                    android:layout_width="match_parent"
-                    android:layout_height="500dp"
-                    android:keepScreenOn="true"
-                    android:fitsSystemWindows="true" />
+            <FrameLayout
+                    android:id="@+id/frame_container"
+                         android:layout_width="match_parent"
+                         android:layout_height="500dp">
+
+                    <com.malmstein.fenster.view.FensterVideoView
+                            android:id="@+id/video"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:keepScreenOn="true"
+                            android:fitsSystemWindows="true" />
+
+                    <com.malmstein.fenster.controller.MediaFensterPlayerController
+                            android:id="@+id/play_video_controller"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:animateLayoutChanges="true"
+                            android:fitsSystemWindows="true" />
+
+            </FrameLayout>
 
     </LinearLayout>
 
