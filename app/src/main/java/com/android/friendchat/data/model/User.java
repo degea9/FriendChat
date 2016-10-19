@@ -20,6 +20,15 @@ public class User {
     private String lastName;
     private String status;
     private String avatar;
+    private String sessionId;
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 
     public String getAvatar() {
         return avatar;
@@ -81,7 +90,7 @@ public class User {
         result.put("avatar", avatar);
         result.put("isMale", isMale);
         result.put("birthDay", birthDay);
-
+        result.put("sessionId", sessionId);
         return result;
     }
 }
