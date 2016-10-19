@@ -97,10 +97,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         }
         viewHolder.date.setText(message.getDate());
         if (message.getImageUrl() != null) {
+            viewHolder.message.setVisibility(View.GONE);
+            viewHolder.photo.setVisibility(View.VISIBLE);
             Picasso.with(mContext).load(message.getImageUrl()).resize(500,500).centerInside().
-            into(viewHolder.photo);
-            viewHolder.message.setVisibility(View.INVISIBLE);
+                    into(viewHolder.photo);
         } else {
+            viewHolder.photo.setVisibility(View.GONE);
+            viewHolder.message.setVisibility(View.VISIBLE);
             viewHolder.message.setText(message.getMessage());
         }
 
