@@ -4,11 +4,17 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import com.android.friendchat.call.CallActivity;
+import com.android.friendchat.data.api.ApiClient;
+import com.android.friendchat.data.api.SessionJson;
 import com.android.friendchat.utils.LogUtil;
 
 import android.content.Intent;
 
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by hp 400 on 10/20/2016.
@@ -41,12 +47,24 @@ public class CallNotificationService extends FirebaseMessagingService {
         // message, here is where that should be initiated. See sendNotification method below.
     }
 
-    private void notifyInCommingCall(String callerId,String sessionId){
-        Intent intent = new Intent(this, CallActivity.class);
-        intent.putExtra("callerId",callerId);
-        intent.putExtra("sessionId",sessionId);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+    private void notifyInCommingCall(final String callerId,final String sessionId){
+        ApiClient.getClient().getToken(sessionId, new Callback<SessionJson>() {
+            @Override
+            public void onResponse(Call<SessionJson> call, Response<SessionJson> response) {
+                Intent intent = new Intent(CallNotificationService.this, CallActivity.class);
+                intent.putExtra("callerId", callerId);
+                intent.putExtra("sessionId", sessionId);
+                intent.putExtra("token",  response.body().getToken());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<SessionJson> call, Throwable t) {
+
+            }
+        });
+
     }
 
 }
