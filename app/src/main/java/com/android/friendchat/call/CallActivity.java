@@ -16,8 +16,10 @@ public class CallActivity extends AppCompatActivity {
     }
 
     private void addFragment() {
+        String callerId = getIntent().getStringExtra("callerId");
+        String receiverId = getIntent().getStringExtra("receiverId");
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container,new CallFragment());
+        transaction.replace(R.id.container, CallFragment.newInstance(receiverId));
         transaction.commit();
     }
 }

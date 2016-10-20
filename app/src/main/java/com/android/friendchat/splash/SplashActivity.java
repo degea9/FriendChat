@@ -6,14 +6,19 @@ import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
 import com.android.friendchat.main.MainActivity;
 import com.android.friendchat.signin.LoginActivity;
+import com.android.friendchat.utils.LogUtil;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SplashActivity extends BaseActivity implements SplashView {
+    private static final String TAG = SplashActivity.class.getSimpleName();
     private SplashPresenter mPresenter;
 
     @Override
@@ -79,6 +84,9 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
     @Override
     public void navigateToMain() {
+        LogUtil.d(TAG,"navigateToMain");
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseMessaging.getInstance().subscribeToTopic(uid);
         navigateTo(MainActivity.class);
     }
 }

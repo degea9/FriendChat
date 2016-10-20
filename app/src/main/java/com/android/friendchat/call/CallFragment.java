@@ -17,16 +17,22 @@ import butterknife.ButterKnife;
  * Created by APC on 10/19/2016.
  */
 
-public class CallFragment extends BaseFragment {
+public class CallFragment extends BaseFragment implements CallView {
+    private CallPresenter mPresenter;
     ImageView callerAvatar;
 
-    public CallFragment newInstance(String contactId){
+    public CallFragment() {
+        mPresenter = new CallPresenter(this);
+    }
+
+    public static CallFragment newInstance(String receiverId) {
         CallFragment fragment = new CallFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("contactId",contactId);
+        bundle.putString("receiverId", receiverId);
         fragment.setArguments(bundle);
         return fragment;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,9 +40,20 @@ public class CallFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_call, container, false);
         ButterKnife.bind(this, view);
         setupView();
+        makeCall();
         return view;
     }
 
     private void setupView() {
+    }
+
+    private void makeCall() {
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            String callerId = bundle.getString("callerId");
+            String receiverId = bundle.getString("receiverId");
+            String sessionId = bundle.getString("sessionId");
+            mPresenter.startCall(receiverId, "1_MX40NTY5NTA3Mn5-MTQ3Njg5MzY5NDI0N35vV3JSTVgzR0gvZXlGT1c1bmpGTy9FT0R-fg");
+        }
     }
 }

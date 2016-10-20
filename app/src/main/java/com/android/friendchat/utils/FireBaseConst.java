@@ -11,4 +11,5 @@ public class FireBaseConst {
     public static final String MESSAGE_TABLE = "messages";
     public static final String USER_MESSAGE_TABLE = "user-message";
     public static final String ROOM_TABLE = "rooms";
+    public static final String CALL_TABLE = "calls";
 }
