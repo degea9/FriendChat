@@ -64,6 +64,7 @@ public class ContactsFragment extends BaseFragment {
         @Override
         public void call(String receiverId) {
             Intent intent = new Intent(getActivity(), CallActivity.class);
+            intent.setAction(CallActivity.ACTION_OUTGOING_CALL);
             intent.putExtra("receiverId",receiverId);
             startActivity(intent);
         }

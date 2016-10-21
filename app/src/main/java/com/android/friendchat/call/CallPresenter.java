@@ -11,7 +11,7 @@ public class CallPresenter {
         mInteractor = new CallInteractorImpl();
     }
 
-    public void startCall(String receiverId,String sessionId){
-        mInteractor.setup( receiverId, sessionId);
+    public void notifyCall(String receiverId,String sessionId){
+        mInteractor.notifyCall( receiverId, sessionId);
     }
 }

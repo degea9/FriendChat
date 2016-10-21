@@ -55,6 +55,7 @@ public class CallNotificationService extends FirebaseMessagingService {
                 intent.putExtra("callerId", callerId);
                 intent.putExtra("sessionJson",response.body());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setAction(CallActivity.ACTION_INCOMING_CALL);
                 startActivity(intent);
             }
 

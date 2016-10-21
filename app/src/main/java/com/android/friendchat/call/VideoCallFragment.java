@@ -19,9 +19,9 @@ import butterknife.ButterKnife;
  */
 public class VideoCallFragment extends BaseFragment {
     @Bind(R.id.publisher_container)
-    private FrameLayout mPublisherViewContainer;
+     FrameLayout mPublisherViewContainer;
     @Bind(R.id.subscriber_container)
-    private FrameLayout mSubscriberViewContainer;
+     FrameLayout mSubscriberViewContainer;
 
 
     public VideoCallFragment() {
