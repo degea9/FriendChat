@@ -30,6 +30,10 @@ public class ApiClient {
         service.getSession().enqueue(callback);
     }
 
+    public void getRelayedSession(Callback<SessionJson> callback){
+        service.getRelaySession().enqueue(callback);
+    }
+
     public void getToken(String sessionId,Callback<SessionJson> callback){
         service.generateToken(sessionId).enqueue(callback);
     }

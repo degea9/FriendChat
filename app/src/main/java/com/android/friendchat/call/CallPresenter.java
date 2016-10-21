@@ -12,6 +12,6 @@ public class CallPresenter {
     }
 
     public void startCall(String receiverId,String sessionId){
-        mInteractor.startCall( receiverId, sessionId);
+        mInteractor.setup( receiverId, sessionId);
     }
 }

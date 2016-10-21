@@ -2,10 +2,12 @@ package com.android.friendchat.data.api;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by hp 400 on 10/11/2016.
  */
-public class SessionJson {
+public class SessionJson implements Serializable{
     @SerializedName("apiKey")
     String apiKey;
     @SerializedName("sessionId")

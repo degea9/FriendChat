@@ -11,6 +11,9 @@ public interface TokboxService {
     @GET("session")
     Call<SessionJson> getSession();
 
+    @GET("session/mode/relay")
+    Call<SessionJson> getRelaySession();
+
     @GET("generatetoken/{sessionId}")
     Call<SessionJson> generateToken(@Path("sessionId") String sessionId);
 }

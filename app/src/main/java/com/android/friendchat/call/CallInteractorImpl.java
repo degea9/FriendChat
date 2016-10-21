@@ -16,7 +16,7 @@ public class CallInteractorImpl implements CallInteractor {
     private static final String TAG = CallInteractorImpl.class.getSimpleName();
 
     @Override
-    public void startCall(String receiverId, String sessionId) {
+    public void setup(String receiverId, String sessionId) {
         String callerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference callRef = FirebaseDatabase.getInstance().getReference(FireBaseConst.CALL_TABLE);
         Map<String, String> call = new HashMap<>();
@@ -24,6 +24,12 @@ public class CallInteractorImpl implements CallInteractor {
         call.put("receiverId", receiverId);
         call.put("sessionId", sessionId);
         callRef.push().setValue(call);
+    }
+
+
+    @Override
+    public void startCall() {
+
     }
 
     @Override

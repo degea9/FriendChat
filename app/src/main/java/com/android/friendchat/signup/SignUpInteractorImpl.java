@@ -38,7 +38,7 @@ public class SignUpInteractorImpl implements SignUpInteractor {
     @Override
     public void signUp(final String username, final String email, final String password, final OnFinishedListener callback) {
         if (Validator.validate(email, password)) {
-            ApiClient.getClient().getSession(new Callback<SessionJson>() {
+            ApiClient.getClient().getRelayedSession(new Callback<SessionJson>() {
                 @Override
                 public void onResponse(Call<SessionJson> call, Response<SessionJson> response) {
                     final String sessionId = response.body().getSessionId();
