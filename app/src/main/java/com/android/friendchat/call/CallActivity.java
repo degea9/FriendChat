@@ -43,6 +43,7 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
     private Subscriber mSubscriber;
     private CallPresenter mPresenter;
     private VideoCallFragment mVideoCallFragment;
+    private boolean isStartCalling;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,11 +121,13 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
         mPublisher.setPublisherListener(this);
         mPublisher.getRenderer().setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE,
                 BaseVideoRenderer.STYLE_VIDEO_FILL);
-        mVideoCallFragment.addPublisherView(mPublisher.getView());
+        if (isStartCalling)
+            mVideoCallFragment.addPublisherView(mPublisher.getView());
     }
 
     @OnClick(R.id.start_call)
     public void startCall() {
+        isStartCalling = true;
         LogUtil.d(TAG, "startCall");
         mVideoCallFragment = new VideoCallFragment();
         addFragment(mVideoCallFragment);
@@ -213,8 +216,8 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
     @Override
     public void onConnected(SubscriberKit subscriberKit) {
         LogUtil.d(TAG, "Subscriber Connected");
-
-        mVideoCallFragment.addSubsriberView(mSubscriber.getView());
+        if (isStartCalling)
+            mVideoCallFragment.addSubsriberView(mSubscriber.getView());
     }
 
     @Override
