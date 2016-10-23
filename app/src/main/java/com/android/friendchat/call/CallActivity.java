@@ -1,10 +1,9 @@
 package com.android.friendchat.call;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import com.android.friendchat.R;
 import com.android.friendchat.base.BaseActivity;
@@ -14,6 +13,11 @@ import com.android.friendchat.data.api.SessionJson;
 import com.android.friendchat.data.model.User;
 import com.android.friendchat.utils.FireBaseConst;
 import com.android.friendchat.utils.LogUtil;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.opentok.android.BaseVideoRenderer;
 import com.opentok.android.OpentokError;
 import com.opentok.android.Publisher;
@@ -23,10 +27,7 @@ import com.opentok.android.Stream;
 import com.opentok.android.Subscriber;
 import com.opentok.android.SubscriberKit;
 
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Call;
@@ -42,8 +43,10 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
     private Publisher mPublisher;
     private Subscriber mSubscriber;
     private CallPresenter mPresenter;
-    private VideoCallFragment mVideoCallFragment;
-    private boolean isStartCalling;
+    @Bind(R.id.publisher_container)
+    FrameLayout mPublisherViewContainer;
+    @Bind(R.id.subscriber_container)
+    FrameLayout mSubscriberViewContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +55,6 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
         ButterKnife.bind(this);
         mPresenter = new CallPresenter(this);
         getIntentData();
-        //stupCall();
-        addFragment(new CallFragment());
     }
 
     private void getIntentData() {
@@ -62,7 +63,10 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
             String callerId = data.getStringExtra("callerId");
             final String receiverId = data.getStringExtra("receiverId");
             mSessionJson = (SessionJson) data.getSerializableExtra("sessionJson");
-            if (ACTION_OUTGOING_CALL.equals(data.getAction())) {
+            if (ACTION_INCOMING_CALL.equals(data.getAction())) {
+                LogUtil.d(TAG, "ACTION_INCOMING_CALL");
+                stupCall();
+            } else if (ACTION_OUTGOING_CALL.equals(data.getAction())) {
                 LogUtil.d(TAG, "ACTION_OUTGOING_CALL");
                 FirebaseDatabase.getInstance().getReference(FireBaseConst.USER_TABLE).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -75,7 +79,7 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
                                 LogUtil.d(TAG, "onResponse");
                                 mSessionJson = response.body();
                                 mPresenter.notifyCall(receiverId, mSessionJson.getSessionId());
-                                //stupCall();
+                                stupCall();
                             }
 
                             @Override
@@ -121,18 +125,12 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
         mPublisher.setPublisherListener(this);
         mPublisher.getRenderer().setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE,
                 BaseVideoRenderer.STYLE_VIDEO_FILL);
-        if (isStartCalling)
-            mVideoCallFragment.addPublisherView(mPublisher.getView());
+        mPublisherViewContainer.addView(mPublisher.getView());
     }
 
     @OnClick(R.id.start_call)
     public void startCall() {
-        isStartCalling = true;
         LogUtil.d(TAG, "startCall");
-        mVideoCallFragment = new VideoCallFragment();
-        addFragment(mVideoCallFragment);
-        Intent data = getIntent();
-        stupCall();
     }
 
     @OnClick(R.id.start_call)
@@ -185,7 +183,7 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
         LogUtil.d(TAG, "Session onStreamDropped");
         if (mSubscriber != null) {
             mSubscriber = null;
-            mVideoCallFragment.removeSubsriberView();
+            mSubscriberViewContainer.removeAllViews();
         }
     }
 
@@ -216,8 +214,7 @@ public class CallActivity extends BaseActivity implements CallView, Session.Sess
     @Override
     public void onConnected(SubscriberKit subscriberKit) {
         LogUtil.d(TAG, "Subscriber Connected");
-        if (isStartCalling)
-            mVideoCallFragment.addSubsriberView(mSubscriber.getView());
+        mSubscriberViewContainer.addView(mSubscriber.getView());
     }
 
     @Override
