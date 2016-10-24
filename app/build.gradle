@@ -34,7 +34,6 @@ dependencies {
     // CardView
     //firebase storage
     //letter icon material
-    testCompile 'junit:junit:4.12'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.google.firebase:firebase-auth:9.6.1'
     compile 'com.google.android.gms:play-services-auth:9.6.1'
@@ -58,6 +57,7 @@ dependencies {
     compile 'com.yqritc:android-scalablevideoview:1.0.4'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.android.support:support-v4:23.4.0'
+    testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
 
