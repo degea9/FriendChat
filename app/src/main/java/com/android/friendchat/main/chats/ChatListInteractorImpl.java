@@ -33,10 +33,12 @@ public class ChatListInteractorImpl implements ChatListInteractor {
                 mUserMessageRef.child(uid).child(dataSnapshot.getKey()).limitToLast(1).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        LogUtil.d(TAG, "onChildAddeddeeper " + dataSnapshot.getKey());
                         mMessageRef.child(dataSnapshot.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 ChatMessage chatMessage = dataSnapshot.getValue(ChatMessage.class);
+                                LogUtil.d(TAG, "chatMessage " + chatMessage.getMessage());
                                 callback.retrieveChatList(chatMessage);
                                 //Toast.makeText(FriendChatApplication.get(),"onChildAdded "+chatMessage.getMessage(),Toast.LENGTH_LONG).show();
                             }
