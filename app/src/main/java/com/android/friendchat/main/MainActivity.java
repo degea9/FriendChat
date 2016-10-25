@@ -24,6 +24,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.tabs)
     TabLayout mTabs;
     RoomPagerAdapter mAdapter;
+    ChatListFragment mChatListFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,9 @@ public class MainActivity extends BaseActivity {
        // mAdapter.addFragment(new VideoChatFragment(), "Video chat");
         mAdapter.addFragment(new RoomListFragment(), "Room");
         //mAdapter.addFragment(new RoomChatFragment(), "TestRoomChat");
-        mAdapter.addFragment(new ChatListFragment(), "chat list");
+        mChatListFragment = new ChatListFragment();
+        mAdapter.addFragment(mChatListFragment, "chat list");
+        mPager.setOffscreenPageLimit(2);
         mPager.setAdapter(mAdapter);
     }
 

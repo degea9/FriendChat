@@ -60,6 +60,20 @@ public class ChatListFragment extends BaseFragment implements ChatListView {
 
     @Override
     public void renderMessage(ChatMessage message) {
-        adapter.addMessage(message);
+        if(!isUpdate(message)) {
+            adapter.addMessage(message);
+        }
+    }
+
+    private boolean isUpdate(ChatMessage newComming){
+        for(int i=0;i<mMessages.size();i++){
+            ChatMessage message = mMessages.get(i);
+           if(newComming.getToId().equals(message.getToId())){
+               mMessages.set(i, newComming);
+               adapter.notifyDataSetChanged();
+               return true;
+           }
+        }
+        return false;
     }
 }
